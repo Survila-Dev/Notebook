@@ -14,7 +14,7 @@ function NotebookSelection({ notebooks, changeNotebooks }: NotebookSelectionProp
         console.log(curId);
 
         changeNotebooks((curNotebooks) => {
-            let newNotebooks = curNotebooks;
+            let newNotebooks = JSON.parse(JSON.stringify(curNotebooks));
             newNotebooks.splice(curId as unknown as number, 1);
             console.log(newNotebooks);
             return newNotebooks;
@@ -24,12 +24,15 @@ function NotebookSelection({ notebooks, changeNotebooks }: NotebookSelectionProp
 
     return (
         <section className = "notebooks">
+            <h2>Notebooks</h2>
             {notebooks.map((inputString, index) => (
                 <Notebook
                     id = {index as unknown as string}
                     title = {inputString}
                     onClickHandle = {handleDeleteClick}
                 />))}
+
+            <button className = "notebooks__add-button">New notebook</button>
         </section>
     )
 }

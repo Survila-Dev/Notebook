@@ -2,7 +2,9 @@ import React from "react"
 
 function HeaderPanel(): JSX.Element {
     return (
-        <div></div>
+        <section className = "header-panel">
+            <h1>Notebook App</h1>
+        </section>
     )
 }
 
