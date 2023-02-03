@@ -25,13 +25,14 @@ function NotebookSelection({ notebooks, changeNotebooks }: NotebookSelectionProp
     return (
         <section className = "notebooks">
             <h2>Notebooks</h2>
-            {notebooks.map((inputString, index) => (
-                <Notebook
-                    id = {index as unknown as string}
-                    title = {inputString}
-                    onClickHandle = {handleDeleteClick}
-                />))}
-
+            <div className = "notebookss__selection">
+                {notebooks.map((inputString, index) => (
+                    <Notebook
+                        id = {index as unknown as string}
+                        title = {inputString}
+                        onClickHandle = {handleDeleteClick}
+                    />))}
+            </div>
             <button className = "notebooks__add-button">New notebook</button>
         </section>
     )

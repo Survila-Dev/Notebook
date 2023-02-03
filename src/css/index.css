@@ -1,3 +1,21 @@
-body {
-  background-color: red;
+.app {
+  display: grid;
+  grid-template-areas: "header header" "notebooks editor";
+}
+
+.app * {
+  min-height: none;
+  min-width: none;
+}
+
+.editor {
+  grid-area: editor;
+}
+
+.header-panel {
+  grid-area: header;
+}
+
+.notebooks {
+  grid-area: notebooks;
 }/*# sourceMappingURL=index.css.map */

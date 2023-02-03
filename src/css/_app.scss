@@ -1,0 +1,11 @@
+.app {
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "notebooks editor";
+}
+
+.app * {
+    min-height: none;
+    min-width: none;
+}
