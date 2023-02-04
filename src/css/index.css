@@ -16,8 +16,8 @@ body {
   grid-template-rows: auto 1fr;
 }
 .app * {
-  min-height: none;
-  min-width: none;
+  min-height: 0;
+  min-width: 0;
 }
 
 h2 {
@@ -28,8 +28,11 @@ h2 {
   grid-area: editor;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto;
-  align-items: flex-end;
+  grid-template-rows: min-max(0, 1fr) auto;
+}
+.editor * {
+  min-height: 0;
+  min-width: 0;
 }
 .editor .editor__textarea {
   height: 100%;

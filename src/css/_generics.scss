@@ -1,6 +1,6 @@
 @mixin grid-element-min-size {
-    min-height: none;
-    min-width: none;
+    min-height: 0;
+    min-width: 0;
 }
 
 @mixin reset-box-size {
