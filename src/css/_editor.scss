@@ -1,5 +1,12 @@
 .editor {
     grid-area: editor;
-    @include flex-split(column);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
     align-items: flex-end;
+
+     #{&}__textarea {
+        height: 100%;
+        width: 100%;
+     }
 }

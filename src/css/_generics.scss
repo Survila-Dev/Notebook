@@ -3,6 +3,12 @@
     min-width: none;
 }
 
+@mixin reset-box-size {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
+
 @mixin flex-split($direction) {
     display: flex;
     flex-direction: $direction;
