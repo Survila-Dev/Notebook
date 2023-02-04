@@ -2,14 +2,22 @@
     grid-area: editor;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: min-max(0, 1fr) auto;
+    grid-template-rows: 1fr auto;
+
+    background-color: brown;
+    height: 100%;
 
     * {
         @include grid-element-min-size;
     }
 
-    #{&}__textarea {
-        height: 100%;
-        width: 100%;
+    button {
+        width: 50px;
+        justify-self: end;
     }
+
+    //#{&}__textarea {
+        // height: 100%;
+        // width: 100%;
+    //}
 }

@@ -9,7 +9,8 @@ import Editor from "./components/Editor";
 function App() {
 
   const [editorContent, changeEditorContent] = React.useState<string>("")
-  const [notebooks, changeNotebooks] = React.useState<string[]>(["first", "second", "third"])
+  const [notebooks, changeNotebooks] = React.useState<string[]>([
+    "first", "second", "third", "first", "second", "third", "first"])
   function handleClickSave() {
     
   }

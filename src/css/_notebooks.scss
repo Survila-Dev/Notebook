@@ -2,8 +2,20 @@
     grid-area: notebooks;
     @include flex-split(column);
 
+    height:100%;
+    background-color: aqua;
+
     #{&}__notebook {
         @include flex-split(row);
         align-items: center;
+
+        padding: 10px;
+        background-color: grey;
+        border-radius: 10px;
+
     }
+
+    #{&}__selection {
+        overflow-y: auto;
+    } 
 }

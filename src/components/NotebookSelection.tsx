@@ -25,7 +25,7 @@ function NotebookSelection({ notebooks, changeNotebooks }: NotebookSelectionProp
     return (
         <section className = "notebooks">
             <h2>Notebooks</h2>
-            <div className = "notebookss__selection">
+            <div className = "notebooks__selection">
                 {notebooks.map((inputString, index) => (
                     <Notebook
                         id = {index as unknown as string}

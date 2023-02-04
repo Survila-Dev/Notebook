@@ -1,3 +1,12 @@
 .header-panel {
     grid-area: header;
+    background-color: chartreuse;
+
+    h1 {
+        @include reset-box-size;
+    }
+}
+
+button {
+    border-radius: $button-corner-radius;
 }

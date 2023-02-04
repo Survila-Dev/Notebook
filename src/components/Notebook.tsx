@@ -17,7 +17,7 @@ function Notebook({ id, title, onClickHandle }: NotebookInterface): JSX.Element 
                 <p className = "notebooks__notebook__text">{title}</p>
                 <div className = "notebooks__notebook__buttons">
                     <button className = "notebooks__notebook__rename-button">Rename</button>
-                    <button className = "notebooks__notebook__delete-button">X</button>
+                    <button className = "notebooks__notebook__delete-button">Delete</button>
                 </div>
         </article>
     )

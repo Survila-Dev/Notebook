@@ -2,6 +2,10 @@ body {
     @include reset-box-size;
 }
 
+button {
+    border-radius: $button-corner-radius;
+}
+
 .app {
     display: grid;
     grid-template-areas: 
@@ -13,7 +17,7 @@ body {
 
     @include reset-box-size;
 
-    grid-template-columns: 300px 2fr;
+    grid-template-columns: 300px 1fr;
     grid-template-rows: auto 1fr;
 
     * {
