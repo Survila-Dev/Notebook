@@ -55,10 +55,6 @@ h2 {
   padding: 0px;
 }
 
-button {
-  border-radius: 5px;
-}
-
 .notebooks {
   grid-area: notebooks;
   display: flex;
