@@ -3,9 +3,12 @@
     grid-template-areas: 
         "header header"
         "notebooks editor";
+
+    * {
+        @include grid-element-min-size;
+    }
 }
 
-.app * {
-    min-height: none;
-    min-width: none;
+h2 {
+    display: none;
 }

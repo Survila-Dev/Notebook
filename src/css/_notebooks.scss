@@ -1,3 +1,9 @@
 .notebooks {
     grid-area: notebooks;
+    @include flex-split(column);
+
+    #{&}__notebook {
+        @include flex-split(row);
+        align-items: center;
+    }
 }

@@ -1,3 +1,5 @@
 .editor {
     grid-area: editor;
+    @include flex-split(column);
+    align-items: flex-end;
 }

@@ -2,14 +2,21 @@
   display: grid;
   grid-template-areas: "header header" "notebooks editor";
 }
-
 .app * {
   min-height: none;
   min-width: none;
 }
 
+h2 {
+  display: none;
+}
+
 .editor {
   grid-area: editor;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .header-panel {
@@ -18,4 +25,13 @@
 
 .notebooks {
   grid-area: notebooks;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.notebooks .notebooks__notebook {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }/*# sourceMappingURL=index.css.map */

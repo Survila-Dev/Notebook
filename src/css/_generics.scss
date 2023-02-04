@@ -1,0 +1,10 @@
+@mixin grid-element-min-size {
+    min-height: none;
+    min-width: none;
+}
+
+@mixin flex-split($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: space-between;
+}
