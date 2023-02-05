@@ -1,0 +1,7 @@
+html, body {
+    @include reset-box-size;
+}
+
+h2 {
+    display: none;
+}

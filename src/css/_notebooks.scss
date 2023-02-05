@@ -1,51 +1,49 @@
 .notebooks {
+    height:100%;
+
     grid-area: notebooks;
     display: grid;
     grid-template-rows: 1fr auto;
 
-    @media only screen and (max-width: 600px) {
-        display: grid;
+    @media only screen and (max-width: $responsive-thr) {
+        display: grid; // change between grid and none
     }
 
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: $responsive-thr) {
         grid-template-areas:
             "selector"
             "newnotebook";
         grid-template-columns: 1fr;
-        
-
-        #{&}__back-button {
-            display: none;
-        }
-        background-color: red;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: $responsive-thr) {
         grid-template-areas:
             "selector selector"
             "backbutton newnotebook";
         grid-template-columns: 1fr 1fr;
-        #{&}__back-button {
+    }
+
+    #{&}__back-button {
+        @media only screen and (min-width: $responsive-thr) {
+            display: none;
+        }
+        @media only screen and (max-width: $responsive-thr) {
             display: inline;
             grid-area: backbutton;
         }
-        background-color: yellow;
     }
 
     #{&}__add-button {
         grid-area: newnotebook;
     }
     
-    height:100%;
-    
     #{&}__notebook {
         @include flex-split(row);
         align-items: center;
         min-height: min-content;
 
-        padding: 10px;
+        padding: $single-notebook-padding;
         background-color: grey;
-        border-radius: 10px;
     }
 
     #{&}__selection {
@@ -53,10 +51,10 @@
         height: auto;
         overflow: auto;
 
-        padding: 10px;
+        padding: $notebooks-selection-padding;
         
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: $notebooks-gap;
     } 
 }
