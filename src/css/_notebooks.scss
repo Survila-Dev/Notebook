@@ -43,8 +43,7 @@
         align-items: center;
         min-height: min-content;
 
-        padding: $single-notebook-padding;
-        background-color: grey;
+        @include single-notebook-selection;
     }
 
     #{&}__selection {

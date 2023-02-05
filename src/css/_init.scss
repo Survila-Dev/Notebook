@@ -11,3 +11,9 @@ button {
     font-family: $main-font;
     @include general-button;
 }
+
+input {
+    font-family: $main-font;
+    width: 50%;
+    outline: none;
+}

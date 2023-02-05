@@ -7,19 +7,36 @@ $app-padding: 5px;
 $editor-save-button-width: 100px;
 $notebooks-selection-padding: 0px;
 $notebooks-gap: 5px;
-$single-notebook-padding: 5px;
 
 // typefaces
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 $main-font: 'Roboto Slab', serif;
 
 // font sizes
+$editor-font-size: 22px;
 
 // font mixins
 
 // general button mixin
 @mixin general-button($action: false) {
     margin: 0px;
+}
+
+// notebook
+@mixin single-notebook-selection {
+    padding: 10px 15px;
+    background-color: lightgrey;
+
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    border-radius: 15px;
+
+    p {
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
 }
 
 // call-to-action button extension

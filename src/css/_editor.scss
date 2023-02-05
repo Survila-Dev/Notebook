@@ -38,5 +38,11 @@
 
     #{&}__textarea {
         grid-area: editor;
+        resize: none;
+        font-family: $main-font;
+        font-size: $editor-font-size;
+        &:focus {
+            outline: none;
+        }
     }
 }
