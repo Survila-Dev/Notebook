@@ -57,7 +57,7 @@ h1 {
 }
 @media only screen and (max-width: 500px) {
   .app {
-    grid-template-areas: "header" "editor";
+    grid-template-areas: "header" "notebooks";
     grid-template-columns: 1fr;
   }
 }
@@ -73,7 +73,7 @@ h1 {
 }
 @media only screen and (max-width: 500px) {
   .editor {
-    display: grid;
+    display: none;
   }
 }
 .editor * {
@@ -143,7 +143,7 @@ h1 {
 }
 @media only screen and (max-width: 500px) {
   .notebooks {
-    display: none;
+    display: grid;
   }
 }
 @media only screen and (min-width: 500px) {
@@ -181,11 +181,17 @@ h1 {
   min-height: -moz-min-content;
   min-height: min-content;
   padding: 10px 15px;
-  background-color: lightgrey;
+  background-color: rgb(246, 246, 246);
   border-style: solid;
   border-color: grey;
   border-width: 1px;
   border-radius: 15px;
+}
+.notebooks .notebooks__notebook:hover {
+  background-color: rgb(213, 218, 255);
+}
+.notebooks .notebooks__notebook:active {
+  background-color: rgb(191, 195, 231);
 }
 .notebooks .notebooks__notebook p {
   padding: 0;
@@ -198,10 +204,10 @@ h1 {
   color: grey;
 }
 .notebooks .notebooks__notebook__icon-button:hover {
-  color: blue;
+  color: rgb(95, 109, 235);
 }
 .notebooks .notebooks__notebook__icon-button:active {
-  color: red;
+  color: rgb(69, 79, 174);
 }
 .notebooks .notebooks__selection {
   grid-area: selector;
@@ -211,4 +217,13 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+@media only screen and (max-width: 500px) {
+  .notebooks .notebooks__selection {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .notebooks .notebooks__selection::-webkit-scrollbar {
+    width: 0 !important;
+  }
 }/*# sourceMappingURL=index.css.map */

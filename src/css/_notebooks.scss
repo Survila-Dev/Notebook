@@ -7,7 +7,7 @@
     gap: $app-grid-gap;
 
     @media only screen and (max-width: $responsive-thr) {
-        display: none; // change between grid and none
+        display: grid; // change between grid and none
     }
 
     @media only screen and (min-width: $responsive-thr) {
@@ -60,5 +60,14 @@
         display: flex;
         flex-direction: column;
         gap: $notebooks-gap;
+
+        // hide scroll bar
+        @media only screen and (max-width: $responsive-thr) {
+            &::-webkit-scrollbar {
+                width: 0 !important
+            }
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     } 
 }

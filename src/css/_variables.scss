@@ -8,6 +8,15 @@ $editor-save-button-width: 100px;
 $notebooks-selection-padding: 0px;
 $notebooks-gap: 5px;
 
+//colors
+$grey-01: rgb(246, 246, 246);
+$grey-02: grey;
+
+$blue-01: rgb(95, 109, 235);
+$blue-02: rgb(69, 79, 174);
+$blue-03: rgb(213, 218, 255);
+$blue-04: rgb(191, 195, 231);
+
 // typefaces
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 $main-font: 'Roboto Slab', serif;
@@ -25,12 +34,20 @@ $editor-font-size: 22px;
 // notebook
 @mixin single-notebook-selection {
     padding: 10px 15px;
-    background-color: lightgrey;
+    background-color: $grey-01;
 
     border-style: solid;
-    border-color: grey;
+    border-color: $grey-02;
     border-width: 1px;
     border-radius: 15px;
+
+    &:hover {
+        background-color: $blue-03;
+    }
+
+    &:active {
+        background-color: $blue-04;
+    }
 
     p {
         padding: 0;
@@ -41,13 +58,13 @@ $editor-font-size: 22px;
 
 // icon-button
 $icon-button-size: 24px;
-$icon-hover-color: blue;
-$icon-click-color: red;
+$icon-hover-color: $blue-01;
+$icon-click-color: $blue-02;
 @mixin icon-button {
     height: $icon-button-size;
     width: $icon-button-size;
 
-    color: grey;
+    color: $grey-02;
     &:hover {
         color: $icon-hover-color;
     }
