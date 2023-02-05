@@ -4,4 +4,10 @@ html, body {
 
 h2 {
     display: none;
+    font-family: $main-font;
+}
+
+button {
+    font-family: $main-font;
+    @include general-button;
 }

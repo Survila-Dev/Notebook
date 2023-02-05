@@ -1,7 +1,14 @@
 .header-panel {
     grid-area: header;
+    padding: 5px;
+
+    @include flex-split(row);
+    align-items: center;
 
     h1 {
+        @include reset-box-size;
+    }
+    p {
         @include reset-box-size;
     }
 }

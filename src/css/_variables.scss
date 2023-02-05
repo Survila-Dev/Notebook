@@ -1,18 +1,26 @@
 // app sizing
 $responsive-thr: 500px;
 $notebooks-width: 300px;
+$app-grid-gap: 5px;
+$app-padding: 5px;
+
 $editor-save-button-width: 100px;
-$notebooks-selection-padding: 5px;
+$notebooks-selection-padding: 0px;
 $notebooks-gap: 5px;
 $single-notebook-padding: 5px;
 
 // typefaces
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+$main-font: 'Roboto Slab', serif;
 
 // font sizes
 
 // font mixins
 
 // general button mixin
+@mixin general-button($action: false) {
+    margin: 0px;
+}
 
 // call-to-action button extension
 

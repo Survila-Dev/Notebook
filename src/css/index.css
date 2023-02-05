@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
 html, body {
   margin: 0;
   border: 0;
@@ -7,15 +8,27 @@ html, body {
 
 h2 {
   display: none;
+  font-family: "Roboto Slab", serif;
+}
+
+button {
+  font-family: "Roboto Slab", serif;
+  margin: 0px;
+}
+
+html {
+  font-family: "Roboto Slab", serif;
 }
 
 .app {
   display: grid;
   grid-template-rows: auto 1fr;
+  gap: 5px;
   margin: 0;
   border: 0;
   padding: 0;
   box-sizing: border-box;
+  padding: 5px;
   height: calc(100vh - 1px);
   width: 100vw;
   max-width: 100%;
@@ -46,6 +59,7 @@ h2 {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto;
   grid-template-areas: "editor editor" "notebooks save";
+  gap: 5px;
 }
 @media only screen and (max-width: 500px) {
   .editor {
@@ -85,8 +99,19 @@ h2 {
 
 .header-panel {
   grid-area: header;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .header-panel h1 {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.header-panel p {
   margin: 0;
   border: 0;
   padding: 0;
@@ -98,6 +123,7 @@ h2 {
   grid-area: notebooks;
   display: grid;
   grid-template-rows: 1fr auto;
+  gap: 5px;
 }
 @media only screen and (max-width: 500px) {
   .notebooks {
@@ -145,7 +171,7 @@ h2 {
   grid-area: selector;
   height: auto;
   overflow: auto;
-  padding: 5px;
+  padding: 0px;
   display: flex;
   flex-direction: column;
   gap: 5px;

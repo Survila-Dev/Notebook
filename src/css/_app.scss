@@ -1,8 +1,14 @@
+html {
+    font-family: $main-font;
+}
+
 .app {
     display: grid;
     grid-template-rows: auto 1fr;
+    gap: $app-grid-gap;
     
     @include reset-box-size;
+    padding: $app-padding;
     height: calc(100vh - 1px);
     width: 100vw;
     max-width: 100%;
