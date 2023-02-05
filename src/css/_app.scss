@@ -1,5 +1,5 @@
-html {
-    font-family: $main-font;
+h1 {
+    font-size: $h1-font-size;
 }
 
 .app {
@@ -25,7 +25,7 @@ html {
     @media only screen and (max-width: $responsive-thr) {
         grid-template-areas:
             "header"
-            "notebooks"; // change between notebooks and editor
+            "editor"; // change between notebooks and editor
         grid-template-columns: 1fr;
     }
 }

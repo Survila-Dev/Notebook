@@ -11,7 +11,7 @@
     gap: $app-grid-gap;
 
     @media only screen and (max-width: $responsive-thr) {
-        display: none; // change between grid and none
+        display: grid; // change between grid and none
     }
 
     @include grid-children-elements-min-size;

@@ -13,9 +13,9 @@ $notebooks-gap: 5px;
 $main-font: 'Roboto Slab', serif;
 
 // font sizes
+$general-font-size: 18px;
+$h1-font-size: 25px;
 $editor-font-size: 22px;
-
-// font mixins
 
 // general button mixin
 @mixin general-button($action: false) {
@@ -39,13 +39,19 @@ $editor-font-size: 22px;
     }
 }
 
-// call-to-action button extension
+// icon-button
+$icon-button-size: 24px;
+$icon-hover-color: blue;
+$icon-click-color: red;
+@mixin icon-button {
+    height: $icon-button-size;
+    width: $icon-button-size;
 
-// pic-button
-
-// editor
-
-$button-corner-radius: 5px;
-$notebook-corners: 10;
-$gap-between-notebooks: 10;
-$notebook-padding: 5;
+    color: grey;
+    &:hover {
+        color: $icon-hover-color;
+    }
+    &:active {
+        color: $icon-click-color;
+    }
+}

@@ -1,4 +1,6 @@
 import React from "react"
+import { RiDeleteBin2Line } from "react-icons/ri"
+import { AiOutlineEdit } from "react-icons/ai"
 
 interface NotebookInterface {
     id: string,
@@ -10,6 +12,7 @@ function Notebook({ id, title, onClickHandle }: NotebookInterface): JSX.Element 
 
     const showEditor: boolean = false;
     // {!showEditor ? <p className = "notebooks__notebook__text">{title}</p> : <input className = "notebooks__notebook__edit-title" type = "text"></input>}
+    // <button className = "notebooks__notebook__delete-button">Delete</button>
 
     return (
         <article
@@ -20,8 +23,8 @@ function Notebook({ id, title, onClickHandle }: NotebookInterface): JSX.Element 
             >
                 {!showEditor ? <p className = "notebooks__notebook__text">{title}</p> : <input className = "notebooks__notebook__edit-title" type = "text"></input>}
                 <div className = "notebooks__notebook__buttons">
-                    <button className = "notebooks__notebook__rename-button">Rename</button>
-                    <button className = "notebooks__notebook__delete-button">Delete</button>
+                    <AiOutlineEdit className = "notebooks__notebook__icon-button"/>
+                    <RiDeleteBin2Line className = "notebooks__notebook__icon-button"/>
                 </div>
         </article>
     )

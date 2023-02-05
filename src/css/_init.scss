@@ -1,5 +1,7 @@
 html, body {
     @include reset-box-size;
+    font-size: $general-font-size;
+    font-family: $main-font;
 }
 
 h2 {
@@ -9,11 +11,13 @@ h2 {
 
 button {
     font-family: $main-font;
+    font-size: $general-font-size;
     @include general-button;
 }
 
 input {
     font-family: $main-font;
+    font-size: $general-font-size;
     width: 50%;
     outline: none;
 }
