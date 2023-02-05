@@ -1,4 +1,4 @@
-body {
+html, body {
     @include reset-box-size;
 }
 
@@ -8,16 +8,26 @@ button {
 
 .app {
     display: grid;
-    grid-template-areas: 
-        "header header"
-        "notebooks editor";
-
-    height: 100vh;
-    width: 100vw;
+    @media only screen and (min-width: 600px) {
+        grid-template-areas: 
+            "header header"
+            "notebooks editor";
+        grid-template-columns: 300px 1fr;
+    }
+    @media only screen and (max-width: 600px) {
+        grid-template-areas:
+            "header"
+            "notebooks";
+        grid-template-columns: 1fr;
+    }
 
     @include reset-box-size;
+    height: calc(100vh - 1px);
+    width: 100vw;
+    max-width: 100%;
+    max-height: 100%;
 
-    grid-template-columns: 300px 1fr;
+    
     grid-template-rows: auto 1fr;
 
     * {

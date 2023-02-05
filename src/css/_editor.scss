@@ -1,23 +1,46 @@
 .editor {
     grid-area: editor;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr auto;
+    grid-template-areas:
+        "editor editor"
+        "notebooks save";
 
     background-color: brown;
     height: 100%;
+
+    @media only screen and (max-width: 600px) {
+        display: none;
+
+        #{&}__notebooks-button {
+            display: inline;
+        }
+    }
+
+    @media only screen and (min-width: 600px) {
+        #{&}__notebooks-button {
+            display: none;
+        }
+        #{&}__save-button {
+            width: 100px;
+            justify-self: end;
+        }
+    }
 
     * {
         @include grid-element-min-size;
     }
 
-    button {
-        width: 50px;
-        justify-self: end;
+    #{&}__save-button {
+        grid-area: save;
     }
 
-    //#{&}__textarea {
-        // height: 100%;
-        // width: 100%;
-    //}
+    #{&}__notebooks-button {
+        grid-area: notebooks;
+    }
+
+    #{&}__textarea {
+        grid-area: editor;
+    }
 }

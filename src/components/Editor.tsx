@@ -11,7 +11,8 @@ function Editor({ editorContent, changeEditorContent, handleClickSave}:EditorPro
         <section className = "editor">
             <h2>Editor</h2>
             <textarea className = "editor__textarea"></textarea>
-            <button className = "editor__button">Save</button>
+            <button className = "editor__save-button">Save</button>
+            <button className = "editor__notebooks-button">Notebooks</button>
         </section>
     )
 }

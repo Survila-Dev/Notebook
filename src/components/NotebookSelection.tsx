@@ -34,6 +34,7 @@ function NotebookSelection({ notebooks, changeNotebooks }: NotebookSelectionProp
                     />))}
             </div>
             <button className = "notebooks__add-button">New notebook</button>
+            <button className = "notebooks__back-button">Go back</button>
         </section>
     )
 }

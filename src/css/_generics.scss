@@ -1,12 +1,14 @@
 @mixin grid-element-min-size {
     min-height: 0;
     min-width: 0;
+    box-sizing: border-box;
 }
 
 @mixin reset-box-size {
-    margin: 0px;
-    border: 0px;
-    padding: 0px;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 @mixin flex-split($direction) {
