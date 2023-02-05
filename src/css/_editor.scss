@@ -1,5 +1,7 @@
 .editor {
     grid-area: editor;
+    height: 100%;
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr auto;
@@ -7,37 +9,30 @@
         "editor editor"
         "notebooks save";
 
-    background-color: brown;
-    height: 100%;
-
-    @media only screen and (max-width: 600px) {
-        display: none;
-
-        #{&}__notebooks-button {
-            display: inline;
-        }
+    @media only screen and (max-width: $responsive-thr) {
+        display: none; // change between grid and none
     }
 
-    @media only screen and (min-width: 600px) {
-        #{&}__notebooks-button {
-            display: none;
-        }
-        #{&}__save-button {
-            width: 100px;
+    @include grid-children-elements-min-size;
+
+    #{&}__save-button {
+        grid-area: save;
+
+        @media only screen and (min-width: $responsive-thr) {
+            width: $editor-save-button-width;
             justify-self: end;
         }
     }
 
-    * {
-        @include grid-element-min-size;
-    }
-
-    #{&}__save-button {
-        grid-area: save;
-    }
-
     #{&}__notebooks-button {
         grid-area: notebooks;
+
+        @media only screen and (max-width: $responsive-thr) {
+            display: inline;
+        }
+        @media only screen and (min-width: $responsive-thr) {
+            display: none;
+        }
     }
 
     #{&}__textarea {

@@ -1,7 +1,9 @@
-@mixin grid-element-min-size {
-    min-height: 0;
-    min-width: 0;
-    box-sizing: border-box;
+@mixin grid-children-elements-min-size {
+    * {
+        min-height: 0;
+        min-width: 0;
+        box-sizing: border-box;
+    }
 }
 
 @mixin reset-box-size {

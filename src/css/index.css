@@ -5,12 +5,13 @@ html, body {
   box-sizing: border-box;
 }
 
-button {
-  border-radius: 5px;
+h2 {
+  display: none;
 }
 
 .app {
   display: grid;
+  grid-template-rows: auto 1fr;
   margin: 0;
   border: 0;
   padding: 0;
@@ -19,54 +20,36 @@ button {
   width: 100vw;
   max-width: 100%;
   max-height: 100%;
-  grid-template-rows: auto 1fr;
-}
-@media only screen and (min-width: 600px) {
-  .app {
-    grid-template-areas: "header header" "notebooks editor";
-    grid-template-columns: 300px 1fr;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .app {
-    grid-template-areas: "header" "notebooks";
-    grid-template-columns: 1fr;
-  }
 }
 .app * {
   min-height: 0;
   min-width: 0;
   box-sizing: border-box;
 }
-
-h2 {
-  display: none;
+@media only screen and (min-width: 500px) {
+  .app {
+    grid-template-areas: "header header" "notebooks editor";
+    grid-template-columns: 300px 1fr;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .app {
+    grid-template-areas: "header" "notebooks";
+    grid-template-columns: 1fr;
+  }
 }
 
 .editor {
   grid-area: editor;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto;
   grid-template-areas: "editor editor" "notebooks save";
-  background-color: brown;
-  height: 100%;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
   .editor {
     display: none;
-  }
-  .editor .editor__notebooks-button {
-    display: inline;
-  }
-}
-@media only screen and (min-width: 600px) {
-  .editor .editor__notebooks-button {
-    display: none;
-  }
-  .editor .editor__save-button {
-    width: 100px;
-    justify-self: end;
   }
 }
 .editor * {
@@ -77,8 +60,24 @@ h2 {
 .editor .editor__save-button {
   grid-area: save;
 }
+@media only screen and (min-width: 500px) {
+  .editor .editor__save-button {
+    width: 100px;
+    justify-self: end;
+  }
+}
 .editor .editor__notebooks-button {
   grid-area: notebooks;
+}
+@media only screen and (max-width: 500px) {
+  .editor .editor__notebooks-button {
+    display: inline;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .editor .editor__notebooks-button {
+    display: none;
+  }
 }
 .editor .editor__textarea {
   grid-area: editor;
@@ -86,7 +85,6 @@ h2 {
 
 .header-panel {
   grid-area: header;
-  background-color: chartreuse;
 }
 .header-panel h1 {
   margin: 0;
@@ -96,32 +94,34 @@ h2 {
 }
 
 .notebooks {
+  height: 100%;
   grid-area: notebooks;
   display: grid;
   grid-template-rows: 1fr auto;
-  height: 100%;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
   .notebooks {
     display: grid;
   }
 }
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 500px) {
   .notebooks {
     grid-template-areas: "selector" "newnotebook";
     grid-template-columns: 1fr;
-    background-color: red;
   }
+}
+@media only screen and (max-width: 500px) {
+  .notebooks {
+    grid-template-areas: "selector selector" "backbutton newnotebook";
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (min-width: 500px) {
   .notebooks .notebooks__back-button {
     display: none;
   }
 }
-@media only screen and (max-width: 600px) {
-  .notebooks {
-    grid-template-areas: "selector selector" "backbutton newnotebook";
-    grid-template-columns: 1fr 1fr;
-    background-color: yellow;
-  }
+@media only screen and (max-width: 500px) {
   .notebooks .notebooks__back-button {
     display: inline;
     grid-area: backbutton;
@@ -138,16 +138,15 @@ h2 {
   min-height: -webkit-min-content;
   min-height: -moz-min-content;
   min-height: min-content;
-  padding: 10px;
+  padding: 5px;
   background-color: grey;
-  border-radius: 10px;
 }
 .notebooks .notebooks__selection {
   grid-area: selector;
   height: auto;
   overflow: auto;
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }/*# sourceMappingURL=index.css.map */
