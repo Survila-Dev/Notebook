@@ -13,22 +13,56 @@ interface NotebookInterface {
     showEditorInit?: boolean,
 }
 
-function Notebook({ id, title, notebooks, changeNotebooks, handleClick, handleDeleteClick, showEditorInit = true }: NotebookInterface): JSX.Element {
+function Notebook({ id, title, notebooks, changeNotebooks, handleClick, handleDeleteClick, showEditorInit = false }: NotebookInterface): JSX.Element {
 
     // const showEditor: boolean = false;
     const [showEditor, changeShowEditor] = React.useState<boolean>(showEditorInit);
+    const [triggerSelect, changeTriggerSelect] = React.useState<boolean>(true);
+
+    const inputField = React.useRef<HTMLInputElement>(null);
+
+    React.useEffect(() => {
+        if (inputField.current !== null) {
+            inputField.current.focus();
+        }
+    }, [triggerSelect])
 
     function handleClickOk (e: React.FormEvent<SVGElement>) {
         e.stopPropagation();
-        // changeNotebooks((cur) => {
-        //     cur[id as unknown as number] = (e. as Element).value
-        // })
+        changeNotebooks((cur) => {
+            if (inputField.current !== null) {
+                cur[id as unknown as number][0] = inputField.current.value;
+            }
+            return cur;
+        })
         changeShowEditor(false);
     }
         
     function handleClickEdit (e: React.FormEvent<SVGElement>) {
         e.stopPropagation();
+        changeTriggerSelect((cur) => !cur)
         changeShowEditor(true);
+    }
+
+    function handleTitleChange(e: React.FormEvent<HTMLInputElement>) {
+        const inputValue: string = e.currentTarget.value;
+        changeNotebooks((cur) => {
+            const newCur = JSON.parse(JSON.stringify(cur))
+            newCur[id as unknown as number][0] = inputValue;
+            return newCur;
+        })
+    }
+
+    function handleEnterClick (e: React.KeyboardEvent) {
+        if (e.key === "Enter") {
+            changeNotebooks((cur) => {
+                if (inputField.current !== null) {
+                    cur[id as unknown as number][0] = inputField.current.value;
+                }
+                return cur;
+            })
+            changeShowEditor(false);
+        }
     }
 
     // if showEditor then make showEditor false then click anywhere or enter
@@ -40,7 +74,7 @@ function Notebook({ id, title, notebooks, changeNotebooks, handleClick, handleDe
             className = "notebooks__notebook"
             onClick = {!showEditor ? handleClick : undefined}
             >
-                {!showEditor ? <p className = "notebooks__notebook__text">{title}</p> : <input className = "notebooks__notebook__edit-title" type = "text" value = {title}></input>}
+                {!showEditor ? <p className = "notebooks__notebook__text">{notebooks[id as unknown as number][0]}</p> : <input className = "notebooks__notebook__edit-title" ref = {inputField} type = "text" value = {notebooks[id as unknown as number][0]} onChange = {handleTitleChange} onKeyUp = {handleEnterClick}></input>}
                 <div className = "notebooks__notebook__buttons">
                     {!showEditor ? <AiOutlineEdit id = {id} className = "notebooks__notebook__icon-button" onClick = {handleClickEdit}/> : <GrStatusGood id = {id} className = "notebooks__notebook__icon-button" onClick = {handleClickOk}/>}
                     <RiDeleteBin2Line id = {id} className = "notebooks__notebook__icon-button" onClick = {handleDeleteClick}/>

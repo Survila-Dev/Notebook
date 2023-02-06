@@ -41,6 +41,10 @@ $editor-font-size: 22px;
     border-width: 1px;
     border-radius: 15px;
 
+    #{&}-selected {
+        background-color: $blue-03;
+    }
+
     &:hover {
         background-color: $blue-03;
     }
