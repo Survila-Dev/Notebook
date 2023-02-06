@@ -212,6 +212,47 @@ h1 {
 .notebooks .notebooks__notebook__icon-button:active {
   color: rgb(69, 79, 174);
 }
+.notebooks .notebooks__selected-notebook {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: -webkit-min-content;
+  min-height: -moz-min-content;
+  min-height: min-content;
+  padding: 10px 15px;
+  background-color: rgb(246, 246, 246);
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+  border-radius: 15px;
+  background-color: rgb(213, 218, 255);
+}
+.notebooks .notebooks__selected-notebook .notebooks .notebooks__selected-notebook-selected {
+  background-color: rgb(213, 218, 255);
+}
+.notebooks .notebooks__selected-notebook:hover {
+  background-color: rgb(213, 218, 255);
+}
+.notebooks .notebooks__selected-notebook:active {
+  background-color: rgb(191, 195, 231);
+}
+.notebooks .notebooks__selected-notebook p {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.notebooks .notebooks__selected-notebook__icon-button {
+  height: 24px;
+  width: 24px;
+  color: grey;
+}
+.notebooks .notebooks__selected-notebook__icon-button:hover {
+  color: rgb(95, 109, 235);
+}
+.notebooks .notebooks__selected-notebook__icon-button:active {
+  color: rgb(69, 79, 174);
+}
 .notebooks .notebooks__selection {
   grid-area: selector;
   height: auto;

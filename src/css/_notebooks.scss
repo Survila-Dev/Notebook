@@ -50,6 +50,19 @@
         }
     }
 
+    #{&}__selected-notebook {
+        @include flex-split(row);
+        align-items: center;
+        min-height: min-content;
+
+        @include single-notebook-selection;
+        background-color: $blue-03;
+
+        &__icon-button {
+            @include icon-button;
+        }
+    }
+
     #{&}__selection {
         grid-area: selector;
         height: auto;

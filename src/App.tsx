@@ -10,7 +10,7 @@ function App() {
   
   
   const [notebooks, changeNotebooks] = React.useState<[string,string][]>([
-    ["first", "first text"], ["second", "second text"]])
+    ["first", "first text"], ["second", "second text"], ["third", "third text"], ["forth", "forth text"]])
   const [editorContent, changeEditorContent] = React.useState<string>(notebooks[0][1])
 
   const [curNotebook, changeCurNotebook] = React.useState<number>(0)

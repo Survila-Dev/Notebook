@@ -5,7 +5,7 @@ import { GrStatusGood } from "react-icons/gr"
 
 interface NotebookInterface {
     id: string,
-    title: string,
+    selectedId: string,
     notebooks: [string, string][],
     changeNotebooks: React.Dispatch<React.SetStateAction<[string, string][]>>,
     handleClick: React.MouseEventHandler<HTMLElement>,
@@ -13,7 +13,7 @@ interface NotebookInterface {
     showEditorInit?: boolean,
 }
 
-function Notebook({ id, title, notebooks, changeNotebooks, handleClick, handleDeleteClick, showEditorInit = false }: NotebookInterface): JSX.Element {
+function Notebook({ id, selectedId, notebooks, changeNotebooks, handleClick, handleDeleteClick, showEditorInit = false }: NotebookInterface): JSX.Element {
 
     // const showEditor: boolean = false;
     const [showEditor, changeShowEditor] = React.useState<boolean>(showEditorInit);
@@ -66,12 +66,19 @@ function Notebook({ id, title, notebooks, changeNotebooks, handleClick, handleDe
     }
 
     // if showEditor then make showEditor false then click anywhere or enter
+    let classNameInput = "notebooks__notebook";
+    console.log("Id " + id);
+    console.log("selectedId " + selectedId)
+    console.log(id == selectedId)
+    if (id == selectedId) {
+        classNameInput += " notebooks__selected-notebook"
+    }
 
     return (
         <article
             id = {id}
             key = {id}
-            className = "notebooks__notebook"
+            className = {classNameInput}
             onClick = {!showEditor ? handleClick : undefined}
             >
                 {!showEditor ? <p className = "notebooks__notebook__text">{notebooks[id as unknown as number][0]}</p> : <input className = "notebooks__notebook__edit-title" ref = {inputField} type = "text" value = {notebooks[id as unknown as number][0]} onChange = {handleTitleChange} onKeyUp = {handleEnterClick}></input>}

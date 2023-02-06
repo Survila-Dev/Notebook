@@ -41,6 +41,19 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
         })
     }
 
+    function handleCreateNewNotebook(e: React.FormEvent) {
+        
+        changeNotebooks((cur) => {
+            const newCur = JSON.parse(JSON.stringify(cur))
+            newCur.push(["new notebook", ""])
+            return newCur;
+        })
+        // changeCurNotebook(() => {
+        //     return notebooks.length + 1;
+        // })
+        
+    }
+
     return (
         <section className = "notebooks">
             <h2>Notebooks</h2>
@@ -49,14 +62,14 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
                     <Notebook
                         id = {index as unknown as string}
                         key = {index as unknown as string}
-                        title = {inputString[0]}
+                        selectedId = {curNotebook as unknown as string}
                         notebooks = {notebooks}
                         changeNotebooks = {changeNotebooks}
                         handleClick = {handleSelectClick}
                         handleDeleteClick = {handleDeleteClick}
                     />))}
             </div>
-            <button className = "notebooks__add-button">New notebook</button>
+            <button className = "notebooks__add-button" onClick = {handleCreateNewNotebook}>New notebook</button>
             <button className = "notebooks__back-button">Go back</button>
         </section>
     )
