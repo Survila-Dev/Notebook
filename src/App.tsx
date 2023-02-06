@@ -7,10 +7,24 @@ import Editor from "./components/Editor";
 
 function App() {
 
-  const [editorContent, changeEditorContent] = React.useState<string>("")
+  
+  
   const [notebooks, changeNotebooks] = React.useState<[string,string][]>([
     ["first", "first text"], ["second", "second text"]])
-  // const [curNotebook, changeCurNotebook] = React.useState<number>(0)
+  const [editorContent, changeEditorContent] = React.useState<string>(notebooks[0][1])
+
+  const [curNotebook, changeCurNotebook] = React.useState<number>(0)
+
+  React.useEffect(() => {
+    changeEditorContent(notebooks[curNotebook][1])
+  }, [curNotebook])
+
+  React.useEffect(() => {
+    changeNotebooks((cur) => {
+      cur[curNotebook][1] = editorContent;
+      return cur;
+    })
+  }, [editorContent])
 
   function handleClickSave() {
     
@@ -20,6 +34,8 @@ function App() {
     <div className="app">
       <HeaderPanel/>
       <NotebookSelection
+        curNotebook = {curNotebook}
+        changeCurNotebook = {changeCurNotebook}
         notebooks = {notebooks}
         changeNotebooks = {changeNotebooks}
         />
