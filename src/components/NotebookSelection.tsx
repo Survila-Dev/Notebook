@@ -5,10 +5,12 @@ interface NotebookSelectionProps {
     curNotebook: number,
     changeCurNotebook: React.Dispatch<React.SetStateAction<number>>,
     notebooks: [string, string][],
-    changeNotebooks: React.Dispatch<React.SetStateAction<[string, string][]>>
+    changeNotebooks: React.Dispatch<React.SetStateAction<[string, string][]>>,
+    showNotebooksResp: boolean,
+    changeShowNotebooksResp: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNotebooks }: NotebookSelectionProps): JSX.Element {
+function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNotebooks, showNotebooksResp, changeShowNotebooksResp }: NotebookSelectionProps): JSX.Element {
 
     function handleSelectClick(e: React.FormEvent) {
         const targetId = e.currentTarget.id;
@@ -18,7 +20,6 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
     function handleDeleteClick(e: React.FormEvent) {
         e.stopPropagation();
         const targetId = (e.currentTarget.id)
-        console.log("targetId " + targetId)
 
         if (targetId as unknown as number === curNotebook) {
             changeCurNotebook(0);
@@ -27,7 +28,6 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
         changeNotebooks((cur) => {
             const newCur = JSON.parse(JSON.stringify(cur))
             newCur.splice(targetId, 1);
-            console.log(newCur);
             return newCur;
         })
     }
@@ -41,8 +41,17 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
         })
     }
 
+    function handleClickGoBack(e: React.FormEvent) {
+        changeShowNotebooksResp(false)
+    }
+
+    let classNameInput = "notebooks"
+    if (showNotebooksResp) {
+        classNameInput += " notebooks__show-notebooks"
+    }
+
     return (
-        <section className = "notebooks">
+        <section className = {classNameInput}>
             <h2>Notebooks</h2>
             <div className = "notebooks__selection">
                 {notebooks.map((inputString, index) => (
@@ -57,7 +66,7 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
                     />))}
             </div>
             <button className = "notebooks__add-button" onClick = {handleCreateNewNotebook}>New notebook</button>
-            <button className = "notebooks__back-button">Go back</button>
+            <button className = "notebooks__back-button" onClick = {handleClickGoBack}>Notes</button>
         </section>
     )
 }
