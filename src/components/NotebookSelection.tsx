@@ -10,28 +10,19 @@ interface NotebookSelectionProps {
 
 function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNotebooks }: NotebookSelectionProps): JSX.Element {
 
-    // function handleDeleteClick(e: React.FormEvent) {
-    //     e.preventDefault();
-    //     const curId = (e.target as Element).id;
-    //     console.log(curId);
-
-    //     changeNotebooks((curNotebooks) => {
-    //         let newNotebooks = JSON.parse(JSON.stringify(curNotebooks));
-    //         newNotebooks.splice(curId as unknown as number, 1);
-    //         console.log(newNotebooks);
-    //         return newNotebooks;
-    //     })
-
-    // }
-
     function handleSelectClick(e: React.FormEvent) {
-        const targetId = (e.target as Element).id;
+        const targetId = e.currentTarget.id;
         changeCurNotebook(targetId as unknown as number);
     }
 
     function handleDeleteClick(e: React.FormEvent) {
         e.stopPropagation();
-        const targetId = (e.target as Element).id as unknown as number;
+        const targetId = (e.currentTarget.id)
+        console.log("targetId " + targetId)
+
+        if (targetId as unknown as number === curNotebook) {
+            changeCurNotebook(0);
+        }
         
         changeNotebooks((cur) => {
             const newCur = JSON.parse(JSON.stringify(cur))
@@ -48,10 +39,6 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
             newCur.push(["new notebook", ""])
             return newCur;
         })
-        // changeCurNotebook(() => {
-        //     return notebooks.length + 1;
-        // })
-        
     }
 
     return (

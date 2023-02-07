@@ -4,6 +4,8 @@ $notebooks-width: 300px;
 $app-grid-gap: 5px;
 $app-padding: 5px;
 
+$text-input-width-in-notebook: 80%;
+
 $editor-save-button-width: 100px;
 $notebooks-selection-padding: 0px;
 $notebooks-gap: 5px;
@@ -41,6 +43,14 @@ $editor-font-size: 22px;
     border-width: 1px;
     border-radius: 15px;
 
+    input {
+        width: $text-input-width-in-notebook;
+    }
+
+    p {
+        width: $text-input-width-in-notebook;
+    }
+
     #{&}-selected {
         background-color: $blue-03;
     }
@@ -69,10 +79,21 @@ $icon-click-color: $blue-02;
     width: $icon-button-size;
 
     color: $grey-02;
+
+    path {
+        stroke: $grey-02;
+    }
+
     &:hover {
         color: $icon-hover-color;
+        path {
+            stroke: $icon-hover-color;
+        }
     }
     &:active {
         color: $icon-click-color;
+        path {
+            stroke: $icon-click-color;
+        }
     }
 }

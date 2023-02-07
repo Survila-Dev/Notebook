@@ -67,11 +67,20 @@ function Notebook({ id, selectedId, notebooks, changeNotebooks, handleClick, han
 
     // if showEditor then make showEditor false then click anywhere or enter
     let classNameInput = "notebooks__notebook";
-    console.log("Id " + id);
-    console.log("selectedId " + selectedId)
-    console.log(id == selectedId)
     if (id == selectedId) {
         classNameInput += " notebooks__selected-notebook"
+    }
+
+    function jsxElementTitleOrEditor(showEditor : boolean) {
+        if (!showEditor) {
+            return (
+                <p className = "notebooks__notebook__text">{notebooks[id as unknown as number][0]}</p>
+            )
+        } else {
+            return (
+                <input className = "notebooks__notebook__edit-title" ref = {inputField} type = "text" value = {notebooks[id as unknown as number][0]} onChange = {handleTitleChange} onKeyUp = {handleEnterClick}></input>
+            )
+        }
     }
 
     return (
@@ -81,7 +90,7 @@ function Notebook({ id, selectedId, notebooks, changeNotebooks, handleClick, han
             className = {classNameInput}
             onClick = {!showEditor ? handleClick : undefined}
             >
-                {!showEditor ? <p className = "notebooks__notebook__text">{notebooks[id as unknown as number][0]}</p> : <input className = "notebooks__notebook__edit-title" ref = {inputField} type = "text" value = {notebooks[id as unknown as number][0]} onChange = {handleTitleChange} onKeyUp = {handleEnterClick}></input>}
+                {jsxElementTitleOrEditor(showEditor)}
                 <div className = "notebooks__notebook__buttons">
                     {!showEditor ? <AiOutlineEdit id = {id} className = "notebooks__notebook__icon-button" onClick = {handleClickEdit}/> : <GrStatusGood id = {id} className = "notebooks__notebook__icon-button" onClick = {handleClickOk}/>}
                     <RiDeleteBin2Line id = {id} className = "notebooks__notebook__icon-button" onClick = {handleDeleteClick}/>

@@ -187,6 +187,12 @@ h1 {
   border-width: 1px;
   border-radius: 15px;
 }
+.notebooks .notebooks__notebook input {
+  width: 80%;
+}
+.notebooks .notebooks__notebook p {
+  width: 80%;
+}
 .notebooks .notebooks__notebook .notebooks .notebooks__notebook-selected {
   background-color: rgb(213, 218, 255);
 }
@@ -206,11 +212,20 @@ h1 {
   width: 24px;
   color: grey;
 }
+.notebooks .notebooks__notebook__icon-button path {
+  stroke: grey;
+}
 .notebooks .notebooks__notebook__icon-button:hover {
   color: rgb(95, 109, 235);
 }
+.notebooks .notebooks__notebook__icon-button:hover path {
+  stroke: rgb(95, 109, 235);
+}
 .notebooks .notebooks__notebook__icon-button:active {
   color: rgb(69, 79, 174);
+}
+.notebooks .notebooks__notebook__icon-button:active path {
+  stroke: rgb(69, 79, 174);
 }
 .notebooks .notebooks__selected-notebook {
   display: flex;
@@ -227,6 +242,12 @@ h1 {
   border-width: 1px;
   border-radius: 15px;
   background-color: rgb(213, 218, 255);
+}
+.notebooks .notebooks__selected-notebook input {
+  width: 80%;
+}
+.notebooks .notebooks__selected-notebook p {
+  width: 80%;
 }
 .notebooks .notebooks__selected-notebook .notebooks .notebooks__selected-notebook-selected {
   background-color: rgb(213, 218, 255);
@@ -247,11 +268,20 @@ h1 {
   width: 24px;
   color: grey;
 }
+.notebooks .notebooks__selected-notebook__icon-button path {
+  stroke: grey;
+}
 .notebooks .notebooks__selected-notebook__icon-button:hover {
   color: rgb(95, 109, 235);
 }
+.notebooks .notebooks__selected-notebook__icon-button:hover path {
+  stroke: rgb(95, 109, 235);
+}
 .notebooks .notebooks__selected-notebook__icon-button:active {
   color: rgb(69, 79, 174);
+}
+.notebooks .notebooks__selected-notebook__icon-button:active path {
+  stroke: rgb(69, 79, 174);
 }
 .notebooks .notebooks__selection {
   grid-area: selector;
