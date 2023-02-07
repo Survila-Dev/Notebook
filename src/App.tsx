@@ -7,14 +7,28 @@ import Editor from "./components/Editor";
 
 function App() {
 
-  
-  
   const [notebooks, changeNotebooks] = React.useState<[string,string][]>([
     ["first", "first text"], ["second", "second text"], ["third", "third text"], ["forth", "forth text"]])
   const [editorContent, changeEditorContent] = React.useState<string>(notebooks[0][1])
-
   const [curNotebook, changeCurNotebook] = React.useState<number>(0)
   const [showNotebooks, changeShowNotebooks] = React.useState<boolean>(true)
+  const [triggerSave, changeTriggerSave] = React.useState<boolean>(false)
+
+  React.useEffect(() => {
+    console.log("Get data from backend.")
+
+    // Interface to backend
+    // get data from backend
+
+  }, [])
+
+  React.useEffect(() => {
+    console.log("Set data to backend.")
+
+    // Interface to backend
+    // set data to backend
+
+  }, [triggerSave])
 
   React.useEffect(() => {
     changeEditorContent(notebooks[curNotebook][1])
@@ -53,6 +67,7 @@ function App() {
         handleClickSave = {handleClickSave}
         showNotebooksResp = {showNotebooks}
         changeShowNotebooksResp = {changeShowNotebooks}
+        changeTriggerSave = {changeTriggerSave}
         />
     </div>
   );

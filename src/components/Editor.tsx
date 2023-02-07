@@ -6,6 +6,7 @@ interface EditorProp {
     handleClickSave: Function,
     showNotebooksResp: boolean,
     changeShowNotebooksResp: React.Dispatch<React.SetStateAction<boolean>>,
+    changeTriggerSave: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function Editor({
@@ -13,7 +14,8 @@ function Editor({
         changeEditorContent,
         handleClickSave,
         showNotebooksResp,
-        changeShowNotebooksResp
+        changeShowNotebooksResp,
+        changeTriggerSave
     }:EditorProp): JSX.Element {
 
     function onEditorChange(e: React.FormEvent<HTMLTextAreaElement>) {
@@ -22,6 +24,10 @@ function Editor({
 
     function handleClickGoToNotebooks(e: React.FormEvent) {
         changeShowNotebooksResp(true);
+    }
+
+    function handleSaveClick(e: React.FormEvent) {
+        changeTriggerSave((cur) => !cur)
     }
 
     let classNameInput = "editor"
@@ -33,7 +39,7 @@ function Editor({
         <section className = {classNameInput}>
             <h2>Editor</h2>
             <textarea className = "editor__textarea" value = {editorContent} onChange = {onEditorChange}></textarea>
-            <button className = "editor__save-button">Save</button>
+            <button className = "editor__save-button" onClick = {handleSaveClick}>Save</button>
             <button className = "editor__notebooks-button" onClick = {handleClickGoToNotebooks}>Notebooks</button>
         </section>
     )
