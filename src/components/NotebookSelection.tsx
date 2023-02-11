@@ -1,4 +1,5 @@
 import React from "react"
+import { JsxElement } from "typescript";
 import Notebook from "./Notebook"
 
 interface NotebookSelectionProps {
@@ -50,20 +51,28 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
         classNameInput += " notebooks__show-notebooks"
     }
 
+    let notebooksJSX;
+    if (notebooks.map) {
+        notebooksJSX = notebooks.map((inputString, index) => (
+            <Notebook
+                id = {index as unknown as string}
+                key = {index as unknown as string}
+                selectedId = {curNotebook as unknown as string}
+                notebooks = {notebooks}
+                changeNotebooks = {changeNotebooks}
+                handleClick = {handleSelectClick}
+                handleDeleteClick = {handleDeleteClick}
+            />))
+    } else {
+        console.log(notebooks)
+        notebooksJSX = <></>
+    }
+  
     return (
         <section className = {classNameInput}>
             <h2>Notebooks</h2>
             <div className = "notebooks__selection">
-                {notebooks.map((inputString, index) => (
-                    <Notebook
-                        id = {index as unknown as string}
-                        key = {index as unknown as string}
-                        selectedId = {curNotebook as unknown as string}
-                        notebooks = {notebooks}
-                        changeNotebooks = {changeNotebooks}
-                        handleClick = {handleSelectClick}
-                        handleDeleteClick = {handleDeleteClick}
-                    />))}
+                {notebooksJSX}
             </div>
             <button className = "notebooks__add-button" onClick = {handleCreateNewNotebook}>New notebook</button>
             <button className = "notebooks__back-button" onClick = {handleClickGoBack}>Notes</button>
