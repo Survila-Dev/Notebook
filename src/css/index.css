@@ -17,6 +17,14 @@ button {
   font-family: "Roboto Slab", serif;
   font-size: 18px;
   margin: 0px;
+  border-radius: 0px;
+  border: 2px solid rgb(207, 207, 207);
+  text-align: left;
+  padding: 10px 15px;
+  background-color: rgb(240, 240, 240);
+}
+button:hover {
+  background-color: rgb(216, 216, 216);
 }
 
 input {
@@ -33,12 +41,12 @@ h1 {
 .app {
   display: grid;
   grid-template-rows: auto 1fr;
-  gap: 5px;
+  gap: 0px;
   margin: 0;
   border: 0;
   padding: 0;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 0;
   height: calc(100vh - 1px);
   width: 100vw;
   max-width: 100%;
@@ -72,7 +80,7 @@ h1 {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto;
   grid-template-areas: "editor editor" "notebooks save";
-  gap: 5px;
+  gap: 0px;
 }
 @media only screen and (max-width: 500px) {
   .editor {
@@ -93,6 +101,7 @@ h1 {
 @media only screen and (min-width: 500px) {
   .editor .editor__save-button {
     width: 100px;
+    text-align: center;
     justify-self: end;
   }
 }
@@ -114,6 +123,9 @@ h1 {
   resize: none;
   font-family: "Roboto Slab", serif;
   font-size: 22px;
+  outline: none;
+  border: none;
+  padding: 10px;
 }
 .editor .editor__textarea:focus {
   outline: none;
@@ -121,7 +133,11 @@ h1 {
 
 .header-panel {
   grid-area: header;
-  padding: 5px;
+  padding: 9px;
+  background-color: rgb(240, 240, 240);
+  border-bottom: 1px solid rgb(207, 207, 207);
+  z-index: 20;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -132,6 +148,7 @@ h1 {
   border: 0;
   padding: 0;
   box-sizing: border-box;
+  color: rgb(83, 83, 83);
 }
 .header-panel p {
   margin: 0;
@@ -145,7 +162,11 @@ h1 {
   grid-area: notebooks;
   display: grid;
   grid-template-rows: 1fr auto;
-  gap: 5px;
+  gap: 0px;
+  padding-top: 2px;
+  background-color: rgb(240, 240, 240);
+  z-index: 15;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 @media only screen and (max-width: 500px) {
   .notebooks {
@@ -186,15 +207,10 @@ h1 {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  min-height: -webkit-min-content;
   min-height: -moz-min-content;
   min-height: min-content;
   padding: 10px 15px;
-  background-color: rgb(246, 246, 246);
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
-  border-radius: 15px;
+  background-color: rgb(240, 240, 240);
 }
 .notebooks .notebooks__notebook input {
   width: 80%;
@@ -219,10 +235,10 @@ h1 {
 .notebooks .notebooks__notebook__icon-button {
   height: 24px;
   width: 24px;
-  color: grey;
+  color: rgb(110, 110, 110);
 }
 .notebooks .notebooks__notebook__icon-button path {
-  stroke: grey;
+  stroke: rgb(216, 216, 216);
 }
 .notebooks .notebooks__notebook__icon-button:hover {
   color: rgb(95, 109, 235);
@@ -241,15 +257,10 @@ h1 {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  min-height: -webkit-min-content;
   min-height: -moz-min-content;
   min-height: min-content;
   padding: 10px 15px;
-  background-color: rgb(246, 246, 246);
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
-  border-radius: 15px;
+  background-color: rgb(240, 240, 240);
   background-color: rgb(213, 218, 255);
 }
 .notebooks .notebooks__selected-notebook input {
@@ -275,10 +286,10 @@ h1 {
 .notebooks .notebooks__selected-notebook__icon-button {
   height: 24px;
   width: 24px;
-  color: grey;
+  color: rgb(110, 110, 110);
 }
 .notebooks .notebooks__selected-notebook__icon-button path {
-  stroke: grey;
+  stroke: rgb(216, 216, 216);
 }
 .notebooks .notebooks__selected-notebook__icon-button:hover {
   color: rgb(95, 109, 235);
@@ -299,7 +310,7 @@ h1 {
   padding: 0px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0px;
 }
 @media only screen and (max-width: 500px) {
   .notebooks .notebooks__selection {

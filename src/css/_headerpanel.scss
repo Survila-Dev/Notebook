@@ -1,12 +1,17 @@
 .header-panel {
     grid-area: header;
-    padding: 5px;
-
+    padding: 9px;
+    background-color: $grey-01;
+    border-bottom: 1px solid $grey-04;
+    z-index: 20;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
     @include flex-split(row);
     align-items: center;
 
     h1 {
         @include reset-box-size;
+        color: $dark-grey-01;
     }
     p {
         @include reset-box-size;

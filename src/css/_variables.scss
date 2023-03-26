@@ -1,18 +1,24 @@
 // app sizing
 $responsive-thr: 500px;
 $notebooks-width: 300px;
-$app-grid-gap: 5px;
+$app-grid-gap: 0px;
 $app-padding: 5px;
 
 $text-input-width-in-notebook: 80%;
 
 $editor-save-button-width: 100px;
 $notebooks-selection-padding: 0px;
-$notebooks-gap: 5px;
+$notebooks-gap: 0px;
 
 //colors
-$grey-01: rgb(246, 246, 246);
-$grey-02: grey;
+$grey-01: rgb(240, 240, 240);
+$grey-02: rgb(216, 216, 216);
+
+$grey-03: rgb(197, 197, 197);
+$grey-04: rgb(207, 207, 207);
+
+$dark-grey-01:rgb(83, 83, 83);
+$dark-grey-02: rgb(110, 110, 110);
 
 $blue-01: rgb(95, 109, 235);
 $blue-02: rgb(69, 79, 174);
@@ -31,17 +37,20 @@ $editor-font-size: 22px;
 // general button mixin
 @mixin general-button($action: false) {
     margin: 0px;
+    border-radius: 0px;
+    border: 2px solid $grey-04;
+    text-align: left;
+    padding: 10px 15px;
+    background-color: $grey-01;
+    &:hover {
+        background-color: $grey-02;
+    }
 }
 
 // notebook
 @mixin single-notebook-selection {
     padding: 10px 15px;
     background-color: $grey-01;
-
-    border-style: solid;
-    border-color: $grey-02;
-    border-width: 1px;
-    border-radius: 15px;
 
     input {
         width: $text-input-width-in-notebook;
@@ -78,7 +87,7 @@ $icon-click-color: $blue-02;
     height: $icon-button-size;
     width: $icon-button-size;
 
-    color: $grey-02;
+    color: $dark-grey-02;
 
     path {
         stroke: $grey-02;

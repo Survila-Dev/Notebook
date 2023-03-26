@@ -1,5 +1,6 @@
 h1 {
     font-size: $h1-font-size;
+
 }
 
 .app {
@@ -8,7 +9,7 @@ h1 {
     gap: $app-grid-gap;
     
     @include reset-box-size;
-    padding: $app-padding;
+    padding: 0;
     height: calc(100vh - 1px);
     width: 100vw;
     max-width: 100%;

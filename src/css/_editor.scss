@@ -9,6 +9,7 @@
         "editor editor"
         "notebooks save";
     gap: $app-grid-gap;
+    
 
     @media only screen and (max-width: $responsive-thr) {
         display: grid; // change between grid and none
@@ -21,9 +22,11 @@
 
     #{&}__save-button {
         grid-area: save;
+        
 
         @media only screen and (min-width: $responsive-thr) {
             width: $editor-save-button-width;
+            text-align: center;
             justify-self: end;
         }
     }
@@ -44,6 +47,9 @@
         resize: none;
         font-family: $main-font;
         font-size: $editor-font-size;
+        outline: none;
+        border: none;
+        padding: 10px;
         &:focus {
             outline: none;
         }
