@@ -1,7 +1,7 @@
 import React from "react"
 import { RiDeleteBin2Line } from "react-icons/ri"
 import { AiOutlineEdit } from "react-icons/ai"
-import { GrStatusGood } from "react-icons/gr"
+import { AiOutlineCheck } from "react-icons/ai"
 
 interface NotebookInterface {
     id: string,
@@ -92,7 +92,7 @@ function Notebook({ id, selectedId, notebooks, changeNotebooks, handleClick, han
             >
                 {jsxElementTitleOrEditor(showEditor)}
                 <div className = "notebooks__notebook__buttons">
-                    {!showEditor ? <AiOutlineEdit id = {id} className = "notebooks__notebook__icon-button" onClick = {handleClickEdit}/> : <GrStatusGood id = {id} className = "notebooks__notebook__icon-button" onClick = {handleClickOk}/>}
+                    {!showEditor ? <AiOutlineEdit id = {id} className = "notebooks__notebook__icon-button" onClick = {handleClickEdit}/> : <AiOutlineCheck id = {id} className = "notebooks__notebook__icon-button" onClick = {handleClickOk}/>}
                     <RiDeleteBin2Line id = {id} className = "notebooks__notebook__icon-button" onClick = {handleDeleteClick}/>
                 </div>
         </article>
