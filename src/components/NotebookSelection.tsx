@@ -1,6 +1,7 @@
 import React from "react"
 import { JsxElement } from "typescript";
 import Notebook from "./Notebook"
+import { AiOutlinePlus } from "react-icons/ai"
 
 interface NotebookSelectionProps {
     curNotebook: number,
@@ -74,7 +75,7 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
             <div className = "notebooks__selection">
                 {notebooksJSX}
             </div>
-            <button className = "notebooks__add-button" onClick = {handleCreateNewNotebook}>New notebook</button>
+            <button className = "notebooks__add-button" onClick = {handleCreateNewNotebook}><AiOutlinePlus className = "notebooks__add-button_symbol"/><p>New notebook</p></button>
             <button className = "notebooks__back-button" onClick = {handleClickGoBack}>Notes</button>
         </section>
     )

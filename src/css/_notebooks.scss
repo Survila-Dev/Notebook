@@ -3,7 +3,7 @@
 
     grid-area: notebooks;
     display: grid;  
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr 45px;
     gap: $app-grid-gap;
     padding-top: 2px;
     background-color: $grey-01;
@@ -43,17 +43,36 @@
 
     #{&}__add-button {
         grid-area: newnotebook;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        border: none;
+        border-top: 2px $grey-02 solid;
+        @media only screen and (max-width: $responsive-thr) {
+            border-left: 2px $grey-02 solid;
+        }
+
     }
     
     #{&}__notebook {
         @include flex-split(row);
         align-items: center;
         min-height: min-content;
-
+        
         @include single-notebook-selection;
 
         &__icon-button {
             @include icon-button;
+        }
+
+        &__edit-title {
+            background-color: none;
+            padding-left: 0px;
+            border: none;
+            outline: none;
         }
     }
 
@@ -63,7 +82,7 @@
         min-height: min-content;
 
         @include single-notebook-selection;
-        background-color: $blue-03;
+        background-color: $accent-03;
 
         &__icon-button {
             @include icon-button;

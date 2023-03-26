@@ -4,7 +4,7 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr 45px;
     grid-template-areas:
         "editor editor"
         "notebooks save";
@@ -22,7 +22,7 @@
 
     #{&}__save-button {
         grid-area: save;
-        
+        border-left: 2px $grey-02 solid;
 
         @media only screen and (min-width: $responsive-thr) {
             width: $editor-save-button-width;

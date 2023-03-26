@@ -20,10 +20,10 @@ $grey-04: rgb(207, 207, 207);
 $dark-grey-01:rgb(83, 83, 83);
 $dark-grey-02: rgb(110, 110, 110);
 
-$blue-01: rgb(95, 109, 235);
-$blue-02: rgb(69, 79, 174);
-$blue-03: rgb(213, 218, 255);
-$blue-04: rgb(191, 195, 231);
+$accent-01: rgb(0, 145, 46);
+$accent-02: rgb(0, 138, 44);
+$accent-03: rgb(179, 253, 203);
+$accent-04: rgb(221, 255, 232);
 
 // typefaces
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
@@ -38,10 +38,12 @@ $editor-font-size: 22px;
 @mixin general-button($action: false) {
     margin: 0px;
     border-radius: 0px;
-    border: 2px solid $grey-04;
     text-align: left;
     padding: 10px 15px;
     background-color: $grey-01;
+    border: none;
+    border-top: 2px $grey-02 solid;
+    
     &:hover {
         background-color: $grey-02;
     }
@@ -61,15 +63,15 @@ $editor-font-size: 22px;
     }
 
     #{&}-selected {
-        background-color: $blue-03;
+        background-color: $accent-03;
     }
 
     &:hover {
-        background-color: $blue-03;
+        background-color: $accent-03;
     }
 
     &:active {
-        background-color: $blue-04;
+        background-color: $accent-04;
     }
 
     p {
@@ -81,8 +83,8 @@ $editor-font-size: 22px;
 
 // icon-button
 $icon-button-size: 24px;
-$icon-hover-color: $blue-01;
-$icon-click-color: $blue-02;
+$icon-hover-color: $accent-01;
+$icon-click-color: $accent-02;
 @mixin icon-button {
     height: $icon-button-size;
     width: $icon-button-size;

@@ -18,10 +18,11 @@ button {
   font-size: 18px;
   margin: 0px;
   border-radius: 0px;
-  border: 2px solid rgb(207, 207, 207);
   text-align: left;
   padding: 10px 15px;
   background-color: rgb(240, 240, 240);
+  border: none;
+  border-top: 2px rgb(216, 216, 216) solid;
 }
 button:hover {
   background-color: rgb(216, 216, 216);
@@ -78,7 +79,7 @@ h1 {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr 45px;
   grid-template-areas: "editor editor" "notebooks save";
   gap: 0px;
 }
@@ -97,6 +98,7 @@ h1 {
 }
 .editor .editor__save-button {
   grid-area: save;
+  border-left: 2px rgb(216, 216, 216) solid;
 }
 @media only screen and (min-width: 500px) {
   .editor .editor__save-button {
@@ -137,7 +139,7 @@ h1 {
   background-color: rgb(240, 240, 240);
   border-bottom: 1px solid rgb(207, 207, 207);
   z-index: 20;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.17);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -161,7 +163,7 @@ h1 {
   height: 100%;
   grid-area: notebooks;
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr 45px;
   gap: 0px;
   padding-top: 2px;
   background-color: rgb(240, 240, 240);
@@ -201,6 +203,19 @@ h1 {
 }
 .notebooks .notebooks__add-button {
   grid-area: newnotebook;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border: none;
+  border-top: 2px rgb(216, 216, 216) solid;
+}
+@media only screen and (max-width: 500px) {
+  .notebooks .notebooks__add-button {
+    border-left: 2px rgb(216, 216, 216) solid;
+  }
 }
 .notebooks .notebooks__notebook {
   display: flex;
@@ -219,13 +234,13 @@ h1 {
   width: 80%;
 }
 .notebooks .notebooks__notebook .notebooks .notebooks__notebook-selected {
-  background-color: rgb(213, 218, 255);
+  background-color: rgb(179, 253, 203);
 }
 .notebooks .notebooks__notebook:hover {
-  background-color: rgb(213, 218, 255);
+  background-color: rgb(179, 253, 203);
 }
 .notebooks .notebooks__notebook:active {
-  background-color: rgb(191, 195, 231);
+  background-color: rgb(221, 255, 232);
 }
 .notebooks .notebooks__notebook p {
   padding: 0;
@@ -241,16 +256,22 @@ h1 {
   stroke: rgb(216, 216, 216);
 }
 .notebooks .notebooks__notebook__icon-button:hover {
-  color: rgb(95, 109, 235);
+  color: rgb(0, 145, 46);
 }
 .notebooks .notebooks__notebook__icon-button:hover path {
-  stroke: rgb(95, 109, 235);
+  stroke: rgb(0, 145, 46);
 }
 .notebooks .notebooks__notebook__icon-button:active {
-  color: rgb(69, 79, 174);
+  color: rgb(0, 138, 44);
 }
 .notebooks .notebooks__notebook__icon-button:active path {
-  stroke: rgb(69, 79, 174);
+  stroke: rgb(0, 138, 44);
+}
+.notebooks .notebooks__notebook__edit-title {
+  background-color: none;
+  padding-left: 0px;
+  border: none;
+  outline: none;
 }
 .notebooks .notebooks__selected-notebook {
   display: flex;
@@ -261,7 +282,7 @@ h1 {
   min-height: min-content;
   padding: 10px 15px;
   background-color: rgb(240, 240, 240);
-  background-color: rgb(213, 218, 255);
+  background-color: rgb(179, 253, 203);
 }
 .notebooks .notebooks__selected-notebook input {
   width: 80%;
@@ -270,13 +291,13 @@ h1 {
   width: 80%;
 }
 .notebooks .notebooks__selected-notebook .notebooks .notebooks__selected-notebook-selected {
-  background-color: rgb(213, 218, 255);
+  background-color: rgb(179, 253, 203);
 }
 .notebooks .notebooks__selected-notebook:hover {
-  background-color: rgb(213, 218, 255);
+  background-color: rgb(179, 253, 203);
 }
 .notebooks .notebooks__selected-notebook:active {
-  background-color: rgb(191, 195, 231);
+  background-color: rgb(221, 255, 232);
 }
 .notebooks .notebooks__selected-notebook p {
   padding: 0;
@@ -292,16 +313,16 @@ h1 {
   stroke: rgb(216, 216, 216);
 }
 .notebooks .notebooks__selected-notebook__icon-button:hover {
-  color: rgb(95, 109, 235);
+  color: rgb(0, 145, 46);
 }
 .notebooks .notebooks__selected-notebook__icon-button:hover path {
-  stroke: rgb(95, 109, 235);
+  stroke: rgb(0, 145, 46);
 }
 .notebooks .notebooks__selected-notebook__icon-button:active {
-  color: rgb(69, 79, 174);
+  color: rgb(0, 138, 44);
 }
 .notebooks .notebooks__selected-notebook__icon-button:active path {
-  stroke: rgb(69, 79, 174);
+  stroke: rgb(0, 138, 44);
 }
 .notebooks .notebooks__selection {
   grid-area: selector;
