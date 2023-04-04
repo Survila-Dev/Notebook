@@ -4,6 +4,9 @@ import './css/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

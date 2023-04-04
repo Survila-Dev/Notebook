@@ -16,6 +16,10 @@ function App() {
   const [triggerSave, changeTriggerSave] = React.useState<boolean>(false)
 
   React.useEffect(() => {
+
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+
     console.log("Get data")
     const fetchData = async () => {
       try {
