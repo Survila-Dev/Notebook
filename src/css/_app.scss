@@ -11,6 +11,7 @@ h1 {
     @include reset-box-size;
     padding: 0;
     height: calc(100vh - 1px);
+    height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
     max-width: 100%;
     max-height: 100%;
