@@ -4,70 +4,119 @@ import './App.css';
 import HeaderPanel from "./components/HeaderPanel";
 import NotebookSelection from "./components/NotebookSelection";
 import Editor from "./components/Editor";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore"; 
+import { firebaseDatabase } from './firebase';
 
 function App() {
 
   const [notebooks, changeNotebooks] = React.useState<[string,string][]>([["none", "none"]])
 
   const [userInfo, updateUserInfo] = React.useState<null | any>(null)
+  const [uidInfo, updateUID] = React.useState<string>("")
     // [
     // ["first", "first text"], ["second", "second text"], ["third", "third text"], ["forth", "forth text"]])
   const [editorContent, changeEditorContent] = React.useState<string>("")
   const [curNotebook, changeCurNotebook] = React.useState<number>(0)
   const [showNotebooks, changeShowNotebooks] = React.useState<boolean>(true)
   const [triggerSave, changeTriggerSave] = React.useState<boolean>(false)
+  const [isLoggedIn, updateIfLoggedIn] = React.useState<boolean>(false)
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      updateUserInfo(user)
+      updateIfLoggedIn(true)
+      updateUID(uid)
+      // ...
+    } else {
+      // User is signed out
+      updateIfLoggedIn(false)
+      // ...
+    }
+  });
+
+
 
   React.useEffect(() => {
 
-    console.log("Get data")
-    const fetchData = async () => {
-      try {
-        const dataAPI = "http://localhost:8000/data";
-        const response = await fetch(dataAPI);
-        const dataRaw = await response.json();
-        console.log(dataRaw);
+    
 
-        const dataArr: [string, string][] = Object.values(dataRaw)
-        changeNotebooks(dataArr)
-        changeEditorContent(dataArr[0][1])
+    // console.log("Get data")
+    // const fetchData = async () => {
+    //   try {
+    //     const dataAPI = "http://localhost:8000/data";
+    //     const response = await fetch(dataAPI);
+    //     const dataRaw = await response.json();
+    //     console.log(dataRaw);
 
-      } catch (err) {
-        console.error(err)
-      }
-    }
+    //     const dataArr: [string, string][] = Object.values(dataRaw)
+    //     changeNotebooks(dataArr)
+    //     changeEditorContent(dataArr[0][1])
 
-    fetchData();
+    //   } catch (err) {
+    //     console.error(err)
+    //   }
+    // }
+
+    // fetchData();
   }, [])
 
   React.useEffect(() => {
-    // create object for saving data
-    console.log("Put data")
-    let putObject: any = {};
-    for (let i = 0; i < notebooks.length; i++) {
-      putObject[i] = notebooks[i]
-    }
-    
-    const writeData = async () => {
-      try {
-        const dataAPI = "http://localhost:8000/data";
-        const requestOptions = {
-          method: "PUT",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(putObject)
-        }
-        const response = await fetch(dataAPI, requestOptions);
-        const data = await response.json();
-        console.log(data)
-      } catch (err) {
-        console.log(err);
+
+    console.log("This fires")
+
+    if (isLoggedIn) {
+
+      const docData: {notebooksName: string[], notebooksContent: string[]} = {
+        notebooksName: [],
+        notebooksContent: []
+      };
+      console.log("Notebooks")
+      console.log(notebooks)
+      for (let i = 0; i < notebooks.length; i++) {
+        console.log(notebooks[i])
+        docData.notebooksName.push(notebooks[i][0])
+        docData.notebooksContent.push(notebooks[i][1])
       }
+      console.log("docData")
+      console.log(docData)
+      setDoc(doc(firebaseDatabase, "notebooks", "two"), docData)
+      .then(() => console.log("Success"))
+      .catch(() => console.log("Failure"))
     }
-    if (!(notebooks[0][0] === "none" && notebooks[0][1] === "none" && notebooks.length === 1)) {
-      writeData();
-    }
+
+    // create object for saving data
+    // console.log("Put data")
+    // let putObject: any = {};
+    // for (let i = 0; i < notebooks.length; i++) {
+    //   putObject[i] = notebooks[i]
+    // }
+    
+    // const writeData = async () => {
+    //   try {
+    //     const dataAPI = "http://localhost:8000/data";
+    //     const requestOptions = {
+    //       method: "PUT",
+    //       headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify(putObject)
+    //     }
+    //     const response = await fetch(dataAPI, requestOptions);
+    //     const data = await response.json();
+    //     console.log(data)
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+    // if (!(notebooks[0][0] === "none" && notebooks[0][1] === "none" && notebooks.length === 1)) {
+    //   writeData();
+    // }
 
 
   }, [triggerSave])
@@ -103,6 +152,8 @@ function App() {
       <HeaderPanel
         userInfo={userInfo}
         updateUserInfo={updateUserInfo}
+        isLoggedIn = {isLoggedIn}
+        updateIfLoggedIn= {updateIfLoggedIn}
         />
       <NotebookSelection
         curNotebook = {curNotebook}
