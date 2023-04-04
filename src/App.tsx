@@ -5,7 +5,7 @@ import HeaderPanel from "./components/HeaderPanel";
 import NotebookSelection from "./components/NotebookSelection";
 import Editor from "./components/Editor";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc, getDoc } from "firebase/firestore"; 
 import { firebaseDatabase } from './firebase';
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
 
   const [userInfo, updateUserInfo] = React.useState<null | any>(null)
   const [uidInfo, updateUID] = React.useState<string>("")
+  const [pullFromDBTrigger, triggerPullFromDB] = React.useState<boolean>(false)
     // [
     // ["first", "first text"], ["second", "second text"], ["third", "third text"], ["forth", "forth text"]])
   const [editorContent, changeEditorContent] = React.useState<string>("")
@@ -23,29 +24,75 @@ function App() {
   const [isLoggedIn, updateIfLoggedIn] = React.useState<boolean>(false)
 
   const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      updateUserInfo(user)
-      updateIfLoggedIn(true)
-      updateUID(uid)
-      // ...
-    } else {
-      // User is signed out
-      updateIfLoggedIn(false)
-      // ...
-    }
-  });
+
+  React.useEffect(()=>{
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        updateUserInfo(user)
+        updateIfLoggedIn(true)
+        updateUID(uid)
+        triggerPullFromDB((cur) => !cur)
+
+        console.log("Getting data")
+        const docRef = doc(firebaseDatabase, "notebooks", uid);
+        getDoc(docRef)
+        .then((result) => {
+
+          const data = result.data()
+          const outputArr: [string, string][] = []
+          if (data) {
+            for (let i = 0; i < data.notebooksName.length; i++) {
+              outputArr.push([data.notebooksName[i], data.notebooksContent[i]])
+            }
+          }
+          changeNotebooks(outputArr)
+          // console.log("Result")
+          // console.log(outputArr)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+        // ...
+      } else {
+        // User is signed out
+        updateIfLoggedIn(false)
+        changeNotebooks([["none", "none"]])
+        changeEditorContent("none")
+        // ...
+      }
+    });
+  }, [])
 
 
 
   React.useEffect(() => {
 
-    
+    console.log("Get data")
+    if (isLoggedIn) {
+      console.log("Getting data")
+      const docRef = doc(firebaseDatabase, "notebooks", uidInfo);
+      getDoc(docRef)
+      .then((result) => {
 
-    // console.log("Get data")
+        const data = result.data()
+        const outputArr: [string, string][] = []
+        if (data) {
+          for (let i = 0; i < data.notebooksName.length; i++) {
+            outputArr.push([data.notebooksName[i], data.notebooksContent[i]])
+          }
+        }
+        changeNotebooks(outputArr)
+        // console.log("Result")
+        // console.log(outputArr)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+    }
+
     // const fetchData = async () => {
     //   try {
     //     const dataAPI = "http://localhost:8000/data";
@@ -63,11 +110,9 @@ function App() {
     // }
 
     // fetchData();
-  }, [])
+  }, [pullFromDBTrigger])
 
   React.useEffect(() => {
-
-    console.log("This fires")
 
     if (isLoggedIn) {
 
@@ -84,41 +129,10 @@ function App() {
       }
       console.log("docData")
       console.log(docData)
-      setDoc(doc(firebaseDatabase, "notebooks", "two"), docData)
+      setDoc(doc(firebaseDatabase, "notebooks", uidInfo), docData)
       .then(() => console.log("Success"))
       .catch(() => console.log("Failure"))
     }
-
-    // create object for saving data
-    // console.log("Put data")
-    // let putObject: any = {};
-    // for (let i = 0; i < notebooks.length; i++) {
-    //   putObject[i] = notebooks[i]
-    // }
-    
-    // const writeData = async () => {
-    //   try {
-    //     const dataAPI = "http://localhost:8000/data";
-    //     const requestOptions = {
-    //       method: "PUT",
-    //       headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify(putObject)
-    //     }
-    //     const response = await fetch(dataAPI, requestOptions);
-    //     const data = await response.json();
-    //     console.log(data)
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
-    // if (!(notebooks[0][0] === "none" && notebooks[0][1] === "none" && notebooks.length === 1)) {
-    //   writeData();
-    // }
-
-
   }, [triggerSave])
 
   React.useEffect(() => {
