@@ -15,6 +15,20 @@
     }
     p {
         @include reset-box-size;
+
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        
+        button {
+            border: none;
+        }
+        p {
+            margin-right: 20px;
+        }
     }
 }
 
