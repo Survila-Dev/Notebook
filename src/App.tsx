@@ -8,6 +8,8 @@ import Editor from "./components/Editor";
 function App() {
 
   const [notebooks, changeNotebooks] = React.useState<[string,string][]>([["none", "none"]])
+
+  const [userInfo, updateUserInfo] = React.useState<null | any>(null)
     // [
     // ["first", "first text"], ["second", "second text"], ["third", "third text"], ["forth", "forth text"]])
   const [editorContent, changeEditorContent] = React.useState<string>("")
@@ -16,9 +18,6 @@ function App() {
   const [triggerSave, changeTriggerSave] = React.useState<boolean>(false)
 
   React.useEffect(() => {
-
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
 
     console.log("Get data")
     const fetchData = async () => {
@@ -101,7 +100,10 @@ function App() {
 
   return (
     <div className={classNameInput}>
-      <HeaderPanel/>
+      <HeaderPanel
+        userInfo={userInfo}
+        updateUserInfo={updateUserInfo}
+        />
       <NotebookSelection
         curNotebook = {curNotebook}
         changeCurNotebook = {changeCurNotebook}
