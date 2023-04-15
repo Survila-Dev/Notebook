@@ -58,7 +58,7 @@ const App: React.FC = () => {
         changeEditorContent("none")
       }
     });
-  }, [])
+  }, [auth])
 
   React.useEffect(() => {
 

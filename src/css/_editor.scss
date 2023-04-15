@@ -12,9 +12,9 @@
     
 
     @media only screen and (max-width: $responsive-thr) {
-        display: grid; // change between grid and none
+        display: grid;
         &__show-notebooks {
-            display: none; // none
+            display: none;
         }
     }
 

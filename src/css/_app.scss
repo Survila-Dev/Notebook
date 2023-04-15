@@ -26,11 +26,11 @@ h1 {
     @media only screen and (max-width: $responsive-thr) {
         grid-template-areas:
             "header"
-            "editor"; // change between notebooks and editor
+            "editor";
         &__show-notebooks {
             grid-template-areas:
                 "header"
-                "notebooks"; // change between notebooks and editor
+                "notebooks";
             }
         grid-template-columns: 1fr;
     }
