@@ -1,6 +1,6 @@
 import React from "react"
 import { JsxElement } from "typescript";
-import Notebook from "./Notebook"
+import { Notebook } from "./Notebook"
 import { AiOutlinePlus } from "react-icons/ai"
 
 interface NotebookSelectionProps {
@@ -12,7 +12,14 @@ interface NotebookSelectionProps {
     changeShowNotebooksResp: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNotebooks, showNotebooksResp, changeShowNotebooksResp }: NotebookSelectionProps): JSX.Element {
+export const NotebookSelection: React.FC<NotebookSelectionProps> = ({
+        curNotebook,
+        changeCurNotebook,
+        notebooks,
+        changeNotebooks,
+        showNotebooksResp,
+        changeShowNotebooksResp
+    }) => {
 
     function handleSelectClick(e: React.FormEvent) {
         const targetId = e.currentTarget.id;
@@ -47,6 +54,7 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
         changeShowNotebooksResp(false)
     }
 
+    // alter the class name for responsive design
     let classNameInput = "notebooks"
     if (showNotebooksResp) {
         classNameInput += " notebooks__show-notebooks"
@@ -80,5 +88,3 @@ function NotebookSelection({ curNotebook, changeCurNotebook, notebooks, changeNo
         </section>
     )
 }
-
-export default NotebookSelection;

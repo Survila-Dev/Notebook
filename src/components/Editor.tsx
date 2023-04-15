@@ -9,14 +9,14 @@ interface EditorProp {
     changeTriggerSave: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function Editor({
+export const Editor: React.FC<EditorProp> = ({
         editorContent,
         changeEditorContent,
         handleClickSave,
         showNotebooksResp,
         changeShowNotebooksResp,
         changeTriggerSave
-    }:EditorProp): JSX.Element {
+    }) => {
 
     function onEditorChange(e: React.FormEvent<HTMLTextAreaElement>) {
         changeEditorContent(e.currentTarget.value);
@@ -30,6 +30,7 @@ function Editor({
         changeTriggerSave((cur) => !cur)
     }
 
+    // Altering the class name for responsive design
     let classNameInput = "editor"
     if (showNotebooksResp) {
         classNameInput += " editor__show-notebooks"
@@ -44,5 +45,3 @@ function Editor({
         </section>
     )
 }
-
-export default Editor;

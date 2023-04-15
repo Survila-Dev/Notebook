@@ -13,14 +13,21 @@ interface NotebookInterface {
     showEditorInit?: boolean,
 }
 
-function Notebook({ id, selectedId, notebooks, changeNotebooks, handleClick, handleDeleteClick, showEditorInit = false }: NotebookInterface): JSX.Element {
+export const Notebook: React.FC<NotebookInterface> = ({
+        id,
+        selectedId,
+        notebooks,
+        changeNotebooks,
+        handleClick,
+        handleDeleteClick,
+        showEditorInit = false
+    }) => {
 
-    // const showEditor: boolean = false;
     const [showEditor, changeShowEditor] = React.useState<boolean>(showEditorInit);
     const [triggerSelect, changeTriggerSelect] = React.useState<boolean>(true);
-
     const inputField = React.useRef<HTMLInputElement>(null);
 
+    // Handle selecting notebook
     React.useEffect(() => {
         if (inputField.current !== null) {
             inputField.current.focus();
@@ -65,12 +72,17 @@ function Notebook({ id, selectedId, notebooks, changeNotebooks, handleClick, han
         }
     }
 
-    // if showEditor then make showEditor false then click anywhere or enter
+    // alter class name if notebook is selected
     let classNameInput = "notebooks__notebook";
     if (id == selectedId) {
         classNameInput += " notebooks__selected-notebook"
     }
 
+    /**
+     * Returns a JSX element with either title as text of the editor for changing the title
+     * @param showEditor 
+     * @returns 
+     */
     function jsxElementTitleOrEditor(showEditor : boolean) {
         if (!showEditor) {
             return (
@@ -98,5 +110,3 @@ function Notebook({ id, selectedId, notebooks, changeNotebooks, handleClick, han
         </article>
     )
 }
-
-export default Notebook;
