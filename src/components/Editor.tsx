@@ -40,7 +40,7 @@ export const Editor: React.FC<EditorProp> = ({
         <section className = {classNameInput}>
             <h2>Editor</h2>
             <textarea className = "editor__textarea" value = {editorContent} onChange = {onEditorChange}></textarea>
-            <button className = "editor__save-button" onClick = {handleSaveClick}>Save</button>
+            {/* <button className = "editor__save-button" onClick = {handleSaveClick}>Save</button> */}
             <button className = "editor__notebooks-button" onClick = {handleClickGoToNotebooks}>Notebooks</button>
         </section>
     )

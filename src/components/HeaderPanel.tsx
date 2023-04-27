@@ -34,7 +34,10 @@ export const HeaderPanel: React.FC<IHeanderPanel> = ({userInfo, updateUserInfo, 
 
     return (
         <section className = "header-panel">
-            <h1>Notebook App</h1>
+            <div>
+                <h1>Notebook App</h1>
+                <p className = "header-panel__sync-text_success">Syncing</p>
+            </div>
             <div className = "header-panel__buttons">
                 {!isLoggedIn && <p>No user</p>}
                 {isLoggedIn && <p>{userInfo.displayName}</p>}

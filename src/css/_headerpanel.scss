@@ -13,9 +13,28 @@
         @include reset-box-size;
         color: $dark-grey-01;
     }
+
     p {
         @include reset-box-size;
 
+    }
+
+    &__sync-text_success {
+        font-size: 16px;
+        color: green;
+        font-weight: bold; 
+    }
+
+    &__sync-text_in_work {
+        font-size: 16px;
+        color: rgb(163, 163, 0);
+        font-weight: bold; 
+    }
+
+    &__sync-text_fail {
+        font-size: 16px;
+        color: red;
+        font-weight: bold; 
     }
 
     &__buttons {

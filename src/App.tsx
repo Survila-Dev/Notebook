@@ -80,11 +80,17 @@ const App: React.FC = () => {
       .catch((err) => {
         console.error(err)
       })
+    } else {
+
+      // Get from local storage if there is anything
+      
     }
 
   }, [pullFromDBTrigger])
 
   React.useEffect(() => {
+
+  
 
     if (isLoggedIn) {
 
@@ -103,7 +109,12 @@ const App: React.FC = () => {
       .then(() => console.log("Success"))
       .catch(() => console.log("Failure"))
 
+    } else {
+
+      // Save to the local storage
+    
     }
+
   }, [triggerSave])
 
   React.useEffect(() => {
