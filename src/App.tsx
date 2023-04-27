@@ -8,9 +8,22 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore"; 
 import { firebaseDatabase } from './firebase';
 
+export type ISyncStatus =
+  | "success"
+  | "pending"
+  | "failure"
+
 const App: React.FC = () => {
 
-  const [notebooks, changeNotebooks] = React.useState<[string,string][]>([["none", "none"]])
+  const [notebooks, changeNotebooks] = React.useState<[string,string][]>(() => {
+
+    const data = localStorage.getItem("notebooks")
+    if (data !== null) {
+      return JSON.parse(data)
+    } else {
+      return [["none", "none"]]
+    }
+  })
 
   const [userInfo, updateUserInfo] = React.useState<null | any>(null)
   const [uidInfo, updateUID] = React.useState<string>("")
@@ -21,6 +34,8 @@ const App: React.FC = () => {
   const [showNotebooks, changeShowNotebooks] = React.useState<boolean>(true)
   const [triggerSave, changeTriggerSave] = React.useState<boolean>(false)
   const [isLoggedIn, updateIfLoggedIn] = React.useState<boolean>(false)
+
+  const [syncStatus, updateSyncStatus] = React.useState<ISyncStatus>("success")
 
   const auth = getAuth();
 
@@ -54,14 +69,13 @@ const App: React.FC = () => {
 
       } else {
         updateIfLoggedIn(false)
-        changeNotebooks([["none", "none"]])
-        changeEditorContent("none")
       }
     });
   }, [auth])
 
   React.useEffect(() => {
 
+    updateSyncStatus("pending")
     if (isLoggedIn) {
       const docRef = doc(firebaseDatabase, "notebooks", uidInfo);
       getDoc(docRef)
@@ -75,23 +89,32 @@ const App: React.FC = () => {
           }
         }
         changeNotebooks(outputArr)
+        updateSyncStatus("success")
 
       })
       .catch((err) => {
         console.error(err)
+        updateSyncStatus("failure")
       })
     } else {
 
       // Get from local storage if there is anything
+      const data = localStorage.getItem("notebooks")
+      if (data !== null) {
+        console.log("Reading from local storage:")
+        console.log(JSON.parse(data))
+        changeNotebooks(JSON.parse(data))
+      }
+      setTimeout(() => {updateSyncStatus("success")}, 500)
       
+
     }
 
   }, [pullFromDBTrigger])
 
   React.useEffect(() => {
 
-  
-
+    updateSyncStatus("pending")
     if (isLoggedIn) {
 
       const docData: {notebooksName: string[], notebooksContent: string[]} = {
@@ -106,13 +129,21 @@ const App: React.FC = () => {
       }
 
       setDoc(doc(firebaseDatabase, "notebooks", uidInfo), docData)
-      .then(() => console.log("Success"))
-      .catch(() => console.log("Failure"))
+      .then(() => {
+        console.log("Success")
+        updateSyncStatus("success")
+      })
+      .catch(() => {
+        console.log("Failure")
+        updateSyncStatus("failure")
+      })
 
     } else {
 
-      // Save to the local storage
-    
+      console.log("Wrote to local storage:")
+      localStorage.setItem("notebooks", JSON.stringify(notebooks))
+      console.log(notebooks)
+      setTimeout(() => {updateSyncStatus("success")}, 500)
     }
 
   }, [triggerSave])
@@ -151,6 +182,7 @@ const App: React.FC = () => {
         updateUserInfo={updateUserInfo}
         isLoggedIn = {isLoggedIn}
         updateIfLoggedIn= {updateIfLoggedIn}
+        syncStatus = {syncStatus}
         />
       <NotebookSelection
         curNotebook = {curNotebook}
@@ -159,6 +191,7 @@ const App: React.FC = () => {
         changeNotebooks = {changeNotebooks}
         showNotebooksResp = {showNotebooks}
         changeShowNotebooksResp = {changeShowNotebooks}
+        changeTriggerSave = {changeTriggerSave}
         />
       <Editor
         editorContent = {editorContent} 

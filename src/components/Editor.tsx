@@ -18,8 +18,14 @@ export const Editor: React.FC<EditorProp> = ({
         changeTriggerSave
     }) => {
 
+    let timer = React.useRef<NodeJS.Timeout>(setTimeout(() => {}, 1000))
+
     function onEditorChange(e: React.FormEvent<HTMLTextAreaElement>) {
+
         changeEditorContent(e.currentTarget.value);
+
+        if (timer !== null) clearTimeout(timer.current)
+        timer.current = setTimeout(() => changeTriggerSave((cur) => !cur), 1000)
     }
 
     function handleClickGoToNotebooks(e: React.FormEvent) {

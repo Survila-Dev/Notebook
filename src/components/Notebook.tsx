@@ -10,6 +10,7 @@ interface NotebookInterface {
     changeNotebooks: React.Dispatch<React.SetStateAction<[string, string][]>>,
     handleClick: React.MouseEventHandler<HTMLElement>,
     handleDeleteClick: React.MouseEventHandler<SVGElement>,
+    changeTriggerSave: React.Dispatch<React.SetStateAction<boolean>>,
     showEditorInit?: boolean,
 }
 
@@ -20,6 +21,7 @@ export const Notebook: React.FC<NotebookInterface> = ({
         changeNotebooks,
         handleClick,
         handleDeleteClick,
+        changeTriggerSave,
         showEditorInit = false
     }) => {
 
@@ -43,6 +45,7 @@ export const Notebook: React.FC<NotebookInterface> = ({
             return cur;
         })
         changeShowEditor(false);
+        changeTriggerSave((cur) => !cur)
     }
         
     function handleClickEdit (e: React.FormEvent<SVGElement>) {
@@ -69,6 +72,7 @@ export const Notebook: React.FC<NotebookInterface> = ({
                 return cur;
             })
             changeShowEditor(false);
+            changeTriggerSave((cur) => !cur)
         }
     }
 

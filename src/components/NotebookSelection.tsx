@@ -9,7 +9,8 @@ interface NotebookSelectionProps {
     notebooks: [string, string][],
     changeNotebooks: React.Dispatch<React.SetStateAction<[string, string][]>>,
     showNotebooksResp: boolean,
-    changeShowNotebooksResp: React.Dispatch<React.SetStateAction<boolean>>
+    changeShowNotebooksResp: React.Dispatch<React.SetStateAction<boolean>>,
+    changeTriggerSave: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const NotebookSelection: React.FC<NotebookSelectionProps> = ({
@@ -18,7 +19,8 @@ export const NotebookSelection: React.FC<NotebookSelectionProps> = ({
         notebooks,
         changeNotebooks,
         showNotebooksResp,
-        changeShowNotebooksResp
+        changeShowNotebooksResp,
+        changeTriggerSave
     }) => {
 
     function handleSelectClick(e: React.FormEvent) {
@@ -39,6 +41,7 @@ export const NotebookSelection: React.FC<NotebookSelectionProps> = ({
             newCur.splice(targetId, 1);
             return newCur;
         })
+        changeTriggerSave((cur) => !cur)
     }
 
     function handleCreateNewNotebook(e: React.FormEvent) {
@@ -48,6 +51,7 @@ export const NotebookSelection: React.FC<NotebookSelectionProps> = ({
             newCur.push(["new notebook", ""])
             return newCur;
         })
+        changeTriggerSave((cur) => !cur)
     }
 
     function handleClickGoBack(e: React.FormEvent) {
@@ -71,6 +75,7 @@ export const NotebookSelection: React.FC<NotebookSelectionProps> = ({
                 changeNotebooks = {changeNotebooks}
                 handleClick = {handleSelectClick}
                 handleDeleteClick = {handleDeleteClick}
+                changeTriggerSave = {changeTriggerSave}
             />))
     } else {
         console.log(notebooks)

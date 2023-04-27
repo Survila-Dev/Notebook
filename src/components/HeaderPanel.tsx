@@ -1,15 +1,17 @@
 import React from "react"
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { firebaseApp } from "../firebase";
+import { ISyncStatus } from "../App";
 
 interface IHeanderPanel {
     userInfo: any | null
     updateUserInfo: React.Dispatch<any | null>
     isLoggedIn: boolean,
-    updateIfLoggedIn: React.Dispatch<boolean>
+    updateIfLoggedIn: React.Dispatch<boolean>,
+    syncStatus: ISyncStatus
 }
 
-export const HeaderPanel: React.FC<IHeanderPanel> = ({userInfo, updateUserInfo, isLoggedIn, updateIfLoggedIn}) => {
+export const HeaderPanel: React.FC<IHeanderPanel> = ({userInfo, updateUserInfo, isLoggedIn, updateIfLoggedIn, syncStatus}) => {
 
     const provider = new GoogleAuthProvider();
     const auth = getAuth(firebaseApp);
@@ -32,11 +34,26 @@ export const HeaderPanel: React.FC<IHeanderPanel> = ({userInfo, updateUserInfo, 
           });
     }
 
+    let syncStatusJSX = <></>
+
+    switch(syncStatus) {
+        case "success":
+            syncStatusJSX = <p className = "header-panel__sync-text_success">Successful sync.</p>
+            break
+        case "failure":
+            syncStatusJSX = <p className = "header-panel__sync-text_fail">Failed sync.</p>
+            break
+        case "pending":
+            syncStatusJSX = <p className = "header-panel__sync-text_in_work">Syncing</p>
+            break
+        
+    }
+
     return (
         <section className = "header-panel">
             <div>
                 <h1>Notebook App</h1>
-                <p className = "header-panel__sync-text_success">Syncing</p>
+                {syncStatusJSX}
             </div>
             <div className = "header-panel__buttons">
                 {!isLoggedIn && <p>No user</p>}
