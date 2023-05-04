@@ -1,5 +1,4 @@
 import React from "react"
-import { JsxElement } from "typescript";
 import { Notebook } from "./Notebook"
 import { AiOutlinePlus } from "react-icons/ai"
 

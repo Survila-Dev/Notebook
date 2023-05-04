@@ -59,7 +59,6 @@ export const HeaderPanel: React.FC<IHeanderPanel> = ({userInfo, updateUserInfo, 
                 {!isLoggedIn && <p>No user</p>}
                 {isLoggedIn && <p>{userInfo.displayName}</p>}
                 {!isLoggedIn && <button onClick = {handleClickLogIn}>Log in</button>}
-                {/* {!userInfo && <button>Sign up</button>} */}
                 {isLoggedIn && <button onClick = {handleClickLogOut}>Log out</button>}
             </div>
         </section>
