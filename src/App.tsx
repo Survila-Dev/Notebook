@@ -99,13 +99,13 @@ const App: React.FC = () => {
     } else {
 
       // Get from local storage if there is anything
-      const data = localStorage.getItem("notebooks")
-      if (data !== null) {
-        console.log("Reading from local storage:")
-        console.log(JSON.parse(data))
-        changeNotebooks(JSON.parse(data))
-      }
-      setTimeout(() => {updateSyncStatus("success")}, 500)
+      // const data = localStorage.getItem("notebooks")
+      // if (data !== null) {
+      //   console.log("Reading from local storage:")
+      //   console.log(JSON.parse(data))
+      //   changeNotebooks(JSON.parse(data))
+      // }
+      // setTimeout(() => {updateSyncStatus("success")}, 500)
       
 
     }
@@ -140,10 +140,10 @@ const App: React.FC = () => {
 
     } else {
 
-      console.log("Wrote to local storage:")
-      localStorage.setItem("notebooks", JSON.stringify(notebooks))
-      console.log(notebooks)
-      setTimeout(() => {updateSyncStatus("success")}, 500)
+      // console.log("Wrote to local storage:")
+      // localStorage.setItem("notebooks", JSON.stringify(notebooks))
+      // console.log(notebooks)
+      // setTimeout(() => {updateSyncStatus("success")}, 500)
     }
 
   }, [triggerSave])

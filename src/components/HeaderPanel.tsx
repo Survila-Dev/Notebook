@@ -53,7 +53,7 @@ export const HeaderPanel: React.FC<IHeanderPanel> = ({userInfo, updateUserInfo, 
         <section className = "header-panel">
             <div>
                 <h1>Notebook App</h1>
-                {syncStatusJSX}
+                {/* {syncStatusJSX} */}
             </div>
             <div className = "header-panel__buttons">
                 <p>Backend disabled.</p>
