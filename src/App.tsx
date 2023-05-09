@@ -6,7 +6,7 @@ import { NotebookSelection } from "./components/NotebookSelection";
 import { Editor } from "./components/Editor";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore"; 
-import { firebaseDatabase } from './firebase';
+// import { firebaseDatabase } from './firebase';
 
 export type ISyncStatus =
   | "success"
@@ -43,29 +43,29 @@ const App: React.FC = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
 
-        const uid = user.uid;
-        updateUserInfo(user)
-        updateIfLoggedIn(true)
-        updateUID(uid)
-        triggerPullFromDB((cur) => !cur)
+        // const uid = user.uid;
+        // updateUserInfo(user)
+        // updateIfLoggedIn(true)
+        // updateUID(uid)
+        // triggerPullFromDB((cur) => !cur)
 
-        const docRef = doc(firebaseDatabase, "notebooks", uid);
-        getDoc(docRef)
+        // const docRef = doc(firebaseDatabase, "notebooks", uid);
+        // getDoc(docRef)
 
-        .then((result) => {
-          const data = result.data()
-          const outputArr: [string, string][] = []
-          if (data) {
-            for (let i = 0; i < data.notebooksName.length; i++) {
-              outputArr.push([data.notebooksName[i], data.notebooksContent[i]])
-            }
-          }
-          changeNotebooks(outputArr)
-        })
+        // .then((result) => {
+        //   const data = result.data()
+        //   const outputArr: [string, string][] = []
+        //   if (data) {
+        //     for (let i = 0; i < data.notebooksName.length; i++) {
+        //       outputArr.push([data.notebooksName[i], data.notebooksContent[i]])
+        //     }
+        //   }
+        //   changeNotebooks(outputArr)
+        // })
 
-        .catch((err) => {
-          console.error(err)
-        })
+        // .catch((err) => {
+        //   console.error(err)
+        // })
 
       } else {
         updateIfLoggedIn(false)
@@ -77,25 +77,25 @@ const App: React.FC = () => {
 
     updateSyncStatus("pending")
     if (isLoggedIn) {
-      const docRef = doc(firebaseDatabase, "notebooks", uidInfo);
-      getDoc(docRef)
-      .then((result) => {
+      // const docRef = doc(firebaseDatabase, "notebooks", uidInfo);
+      // getDoc(docRef)
+      // .then((result) => {
 
-        const data = result.data()
-        const outputArr: [string, string][] = []
-        if (data) {
-          for (let i = 0; i < data.notebooksName.length; i++) {
-            outputArr.push([data.notebooksName[i], data.notebooksContent[i]])
-          }
-        }
-        changeNotebooks(outputArr)
-        updateSyncStatus("success")
+      //   const data = result.data()
+      //   const outputArr: [string, string][] = []
+      //   if (data) {
+      //     for (let i = 0; i < data.notebooksName.length; i++) {
+      //       outputArr.push([data.notebooksName[i], data.notebooksContent[i]])
+      //     }
+      //   }
+      //   changeNotebooks(outputArr)
+      //   updateSyncStatus("success")
 
-      })
-      .catch((err) => {
-        console.error(err)
-        updateSyncStatus("failure")
-      })
+      // })
+      // .catch((err) => {
+      //   console.error(err)
+      //   updateSyncStatus("failure")
+      // })
     } else {
 
       // Get from local storage if there is anything
@@ -117,26 +117,26 @@ const App: React.FC = () => {
     updateSyncStatus("pending")
     if (isLoggedIn) {
 
-      const docData: {notebooksName: string[], notebooksContent: string[]} = {
-        notebooksName: [],
-        notebooksContent: []
-      };
+      // const docData: {notebooksName: string[], notebooksContent: string[]} = {
+      //   notebooksName: [],
+      //   notebooksContent: []
+      // };
 
-      for (let i = 0; i < notebooks.length; i++) {
-        console.log(notebooks[i])
-        docData.notebooksName.push(notebooks[i][0])
-        docData.notebooksContent.push(notebooks[i][1])
-      }
+      // for (let i = 0; i < notebooks.length; i++) {
+      //   console.log(notebooks[i])
+      //   docData.notebooksName.push(notebooks[i][0])
+      //   docData.notebooksContent.push(notebooks[i][1])
+      // }
 
-      setDoc(doc(firebaseDatabase, "notebooks", uidInfo), docData)
-      .then(() => {
-        console.log("Success")
-        updateSyncStatus("success")
-      })
-      .catch(() => {
-        console.log("Failure")
-        updateSyncStatus("failure")
-      })
+      // setDoc(doc(firebaseDatabase, "notebooks", uidInfo), docData)
+      // .then(() => {
+      //   console.log("Success")
+      //   updateSyncStatus("success")
+      // })
+      // .catch(() => {
+      //   console.log("Failure")
+      //   updateSyncStatus("failure")
+      // })
 
     } else {
 
